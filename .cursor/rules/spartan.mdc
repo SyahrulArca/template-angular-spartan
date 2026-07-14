@@ -1,0 +1,38 @@
+---
+context: true
+priority: high
+scope: project
+---
+
+# spartan/ui Conventions
+
+This project uses **spartan/ui** (Brain + Helm). Read `.agents/skills/spartan/SKILL.md` for full workflow.
+
+## Architecture
+
+- **Brain** (`@spartan-ng/brain/*`) — npm packages, do not edit.
+- **Helm** (`@spartan-ng/helm/*`) — copied to `libs/ui/`, owned and customizable.
+
+## Required patterns
+
+- Import `*Imports` consts (e.g. `HlmCardImports`) into standalone component `imports`.
+- Use `provideSpartanHlm()` in `app.config.ts` for overlay components.
+- Register icons with `provideIcons({ lucideXxx })` wherever `<ng-icon>` is used.
+- Use semantic Tailwind tokens: `bg-primary`, `text-muted-foreground`, `border-border` — never raw colors like `bg-blue-500`.
+- Layout spacing: prefer `gap-*` over `space-*`; use `size-*` when width equals height.
+- Use component `variant` / `size` inputs before custom classes.
+- Dialogs, sheets, and alert dialogs must include a title (use `sr-only` if hidden).
+
+## CLI
+
+```bash
+ng g @spartan-ng/cli:info --json          # project context
+ng g @spartan-ng/cli:ui --name=<component> # add component
+ng g @spartan-ng/cli:healthcheck --autoFix # after upgrades
+```
+
+Helm path: `libs/ui` · Import alias: `@spartan-ng/helm`
+
+## Agent skill
+
+Spartan skill lives at `.agents/skills/spartan/` — follow `rules/styling.md`, `rules/composition.md`, `rules/icons.md`, and `rules/forms.md` when building UI.

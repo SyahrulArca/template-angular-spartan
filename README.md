@@ -1,59 +1,123 @@
-# TemplateAngularSpartan
+# template-angular-spartan
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.16.
+Base admin template built with **Angular 21** and **[spartan/ui](https://www.spartan.ng/)**.
 
-## Development server
+Includes a collapsible sidebar layout, lazy-loaded routes, dark mode, toast notifications, and a curated set of Spartan Helm components ready to customize.
 
-To start a local development server, run:
+## Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Angular 21 (standalone, signals) |
+| UI | spartan/ui — Brain (npm) + Helm (copied to `libs/ui/`) |
+| Styling | Tailwind CSS v4, Nova theme |
+| Icons | `@ng-icons/lucide` |
+| Tests | Vitest via Angular CLI |
+
+## Quick start
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200). Default route redirects to `/dashboard`.
 
-## Code scaffolding
+## Project structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```
+src/app/
+├── core/services/       # Shared services (e.g. ThemeService)
+├── layout/              # App shell, sidebar, header
+├── features/            # Lazy-loaded feature pages
+│   ├── dashboard/
+│   ├── settings/
+│   └── not-found/
+├── app.config.ts        # Providers incl. provideSpartanHlm()
+├── app.routes.ts        # Route definitions
+└── app.ts               # Root component
 
-```bash
-ng generate component component-name
+libs/ui/                 # Helm components (owned by you, customizable)
+components.json          # Spartan CLI config
+.agents/skills/spartan/  # Agent skill for AI-assisted UI work
+.cursor/rules/           # Cursor rules (Angular + Spartan)
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Installed Spartan components
+
+Helm components live under `libs/ui/`. Import via `@spartan-ng/helm/<name>`.
+
+Key components used in the template:
+
+- **Layout:** sidebar, separator, sheet, skeleton, tooltip
+- **Navigation:** breadcrumb, dropdown-menu
+- **Content:** card, button, avatar, spinner, sonner (toast)
+- **Typography, alert, alert-dialog,** and more — see `libs/ui/`
+
+List installed components:
 
 ```bash
-ng generate --help
+ng g @spartan-ng/cli:info --json
 ```
 
-## Building
-
-To build the project run:
+## Adding a Spartan component
 
 ```bash
-ng build
+ng g @spartan-ng/cli:ui --name=dialog
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This copies Helm code to `libs/ui/`, installs Brain dependencies, and updates TypeScript paths.
 
-## Running unit tests
+Import in your standalone component:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+```typescript
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+
+@Component({
+  imports: [HlmDialogImports],
+  // ...
+})
+```
+
+Register icons used in templates:
+
+```typescript
+providers: [provideIcons({ lucidePlus })],
+```
+
+## Theming & dark mode
+
+Theme tokens are defined in `src/styles.css` (Nova style). Toggle dark mode via the header button or `ThemeService` — persisted in `localStorage`.
+
+Regenerate theme variables:
 
 ```bash
-ng test
+ng g @spartan-ng/cli:ui-theme
 ```
 
-## Running end-to-end tests
+## AI / Cursor setup
 
-For end-to-end (e2e) testing, run:
+- **Spartan skill:** `.agents/skills/spartan/SKILL.md`
+- **Cursor rules:** `.cursor/rules/cursor.mdc` (Angular) + `.cursor/rules/spartan.mdc` (UI)
+- **MCP servers:** `.vscode/mcp.json` — Angular CLI + `@spartan-ng/mcp`
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `ng serve` | Dev server |
+| `ng build` | Production build |
+| `ng test` | Unit tests (Vitest) |
+| `ng g @spartan-ng/cli:healthcheck` | Scan for deprecated Spartan patterns |
+
+## Healthcheck
+
+After upgrading `@spartan-ng/brain` or `@spartan-ng/cli`:
 
 ```bash
-ng e2e
+ng g @spartan-ng/cli:healthcheck --autoFix
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Private template — customize freely. Spartan/ui components follow their respective licenses (MIT).
