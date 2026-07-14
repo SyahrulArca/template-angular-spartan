@@ -23,6 +23,13 @@ ng serve
 
 Open [http://localhost:4200](http://localhost:4200). Default route redirects to `/dashboard`.
 
+## Documentation
+
+See the [`docs/`](./docs/) folder:
+
+- [Create a new page](./docs/create-page.md) — feature page walkthrough (routing, sidebar, breadcrumb)
+- [Component conventions & CLI](./docs/component-conventions.md) — generator defaults, view/logic split
+
 ## Project structure
 
 ```

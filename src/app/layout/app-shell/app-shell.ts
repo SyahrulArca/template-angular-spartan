@@ -9,19 +9,19 @@ import { AppSidebar } from '../app-sidebar/app-sidebar';
 @Component({
   selector: 'app-shell',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppSidebar,
-    AppHeader,
-    RouterOutlet,
-    HlmSidebarImports,
-    HlmToasterImports,
-  ],
+  imports: [AppSidebar, AppHeader, RouterOutlet, HlmSidebarImports, HlmToasterImports],
   template: `
     <app-sidebar>
-      <main hlmSidebarInset class="flex min-h-svh flex-col">
+      <main
+        hlmSidebarInset
+        class="flex min-h-vh w-auto min-w-0 max-w-full flex-1 flex-col overflow-hidden"
+      >
         <app-header />
-        <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <router-outlet />
+
+        <div class="flex min-h-0 flex-1 flex-col overflow-y-auto">
+          <div class="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 p-4 md:p-6">
+            <router-outlet />
+          </div>
         </div>
       </main>
     </app-sidebar>

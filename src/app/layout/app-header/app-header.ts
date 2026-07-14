@@ -39,15 +39,15 @@ import { ThemeService } from '../../core/services/theme.service';
   ],
   template: `
     <header
-      class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 border-b px-4 backdrop-blur"
+      class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-10 flex h-14 shrink-0 items-center gap-3 border-b px-4 md:px-6 backdrop-blur"
     >
-      <button hlmSidebarTrigger variant="ghost" size="icon-sm">
+      <button hlmSidebarTrigger variant="ghost" size="icon-sm" type="button">
         <span class="sr-only">Toggle sidebar</span>
       </button>
 
-      <div hlmSeparator orientation="vertical" class="mx-1 h-4!"></div>
+      <div hlmSeparator orientation="vertical" class="hidden h-4! sm:block"></div>
 
-      <nav hlmBreadcrumb>
+      <nav hlmBreadcrumb class="min-w-0 flex-1">
         <ol hlmBreadcrumbList>
           <li hlmBreadcrumbItem>
             <a hlmBreadcrumbLink link="/dashboard">Home</a>
@@ -61,7 +61,7 @@ import { ThemeService } from '../../core/services/theme.service';
         </ol>
       </nav>
 
-      <div class="ms-auto flex items-center gap-2">
+      <div class="flex shrink-0 items-center gap-1">
         <button
           hlmBtn
           variant="ghost"
@@ -96,9 +96,9 @@ import { ThemeService } from '../../core/services/theme.service';
               <hlm-avatar class="size-8">
                 <span hlmAvatarFallback>ST</span>
               </hlm-avatar>
-              <div class="flex flex-col">
-                <span class="text-sm font-medium">Template User</span>
-                <span class="text-muted-foreground text-xs">user@example.com</span>
+              <div class="flex min-w-0 flex-col">
+                <span class="truncate text-sm font-medium">Template User</span>
+                <span class="text-muted-foreground truncate text-xs">user@example.com</span>
               </div>
             </div>
             <div hlmDropdownMenuSeparator></div>

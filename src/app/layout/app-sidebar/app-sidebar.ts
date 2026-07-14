@@ -22,15 +22,17 @@ type NavItem = {
   ],
   template: `
     <div hlmSidebarWrapper>
-      <hlm-sidebar collapsible="icon">
-        <div hlmSidebarHeader class="border-b border-sidebar-border p-2">
-          <div class="flex items-center gap-2 px-2 py-1">
+      <hlm-sidebar variant="inset" collapsible="icon">
+        <div hlmSidebarHeader>
+          <div
+            class="flex items-center gap-2 px-2 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0"
+          >
             <div
               class="bg-sidebar-primary text-sidebar-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-lg text-sm font-semibold"
             >
               S
             </div>
-            <div class="flex min-w-0 flex-col group-data-[collapsible=icon]:hidden">
+            <div class="grid min-w-0 flex-1 text-start group-data-[collapsible=icon]:hidden">
               <span class="truncate text-sm font-semibold">Spartan Template</span>
               <span class="text-muted-foreground truncate text-xs">Base admin layout</span>
             </div>
@@ -50,6 +52,7 @@ type NavItem = {
                       routerLinkActive
                       #rla="routerLinkActive"
                       [isActive]="rla.isActive"
+                      [tooltip]="item.title"
                     >
                       <ng-icon [name]="item.icon" />
                       <span>{{ item.title }}</span>
@@ -61,8 +64,10 @@ type NavItem = {
           </div>
         </div>
 
-        <div hlmSidebarFooter class="border-t border-sidebar-border p-2">
-          <p class="text-muted-foreground px-2 text-xs group-data-[collapsible=icon]:hidden">
+        <div hlmSidebarFooter>
+          <p
+            class="text-muted-foreground truncate px-2 text-xs group-data-[collapsible=icon]:hidden"
+          >
             Angular 21 + spartan/ui
           </p>
         </div>

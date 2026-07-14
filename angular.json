@@ -8,7 +8,15 @@
   "projects": {
     "template-angular-spartan": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "inlineTemplate": false,
+          "inlineStyle": false,
+          "style": "none",
+          "standalone": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
