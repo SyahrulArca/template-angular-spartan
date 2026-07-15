@@ -1,0 +1,15 @@
+<hlm-dialog-header>
+  <h2 hlmDialogTitle>{{ title() }}</h2>
+  @if (description()) {
+    <p hlmDialogDescription class="pb-4">{{ description() }}</p>
+  }
+</hlm-dialog-header>
+
+<hlm-dialog-footer>
+  <button hlmBtn variant="outline" type="button" (click)="cancel()">
+    {{ cancelLabel() }}
+  </button>
+  <button hlmBtn [variant]="confirmVariant()" type="button" (click)="confirm()">
+    {{ confirmLabel() }}
+  </button>
+</hlm-dialog-footer>

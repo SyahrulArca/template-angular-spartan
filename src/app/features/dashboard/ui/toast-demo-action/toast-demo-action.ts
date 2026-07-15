@@ -9,7 +9,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
   template: `
     <div class="flex gap-2">
       <button hlmBtn variant="outline" size="sm" type="button" (click)="dismiss()">Undo</button>
-      <button hlmBtn variant="outline" size="sm" type="button" (click)="dismiss()">Process</button>
+      <button hlmBtn variant="default" size="sm" type="button" (click)="dismiss()">Process</button>
     </div>
   `,
 })

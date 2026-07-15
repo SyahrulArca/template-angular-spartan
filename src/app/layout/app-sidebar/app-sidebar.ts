@@ -1,27 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideLayoutDashboard, lucideListTodo, lucideSettings } from '@ng-icons/lucide';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import {
+  appMenuIcons,
+  appMenuSidebar,
+  formatAppMenuGroupLabel,
+  getAppMenuItemTrackId,
+  hasAppMenuChildren,
+} from '../../core/config/app-menu';
 import { appEnv } from '../../core/config/app-env';
-
-type NavItem = {
-  title: string;
-  path: string;
-  icon: string;
-};
 
 @Component({
   selector: 'app-sidebar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [HlmSidebarImports, NgIcon, RouterLink, RouterLinkActive],
-  providers: [
-    provideIcons({
-      lucideLayoutDashboard,
-      lucideListTodo,
-      lucideSettings,
-    }),
-  ],
+  providers: [provideIcons(appMenuIcons)],
   template: `
     <div hlmSidebarWrapper>
       <hlm-sidebar variant="inset" collapsible="icon">
@@ -42,28 +36,53 @@ type NavItem = {
         </div>
 
         <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupLabel>Navigation</div>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
-                @for (item of navItems; track item.path) {
-                  <li hlmSidebarMenuItem>
-                    <a
-                      hlmSidebarMenuButton
-                      [routerLink]="item.path"
-                      routerLinkActive
-                      #rla="routerLinkActive"
-                      [isActive]="rla.isActive"
-                      [tooltip]="item.title"
-                    >
-                      <ng-icon [name]="item.icon" />
-                      <span>{{ item.title }}</span>
-                    </a>
-                  </li>
-                }
-              </ul>
+          @for (menuGroup of menuGroups; track menuGroup.group) {
+            <div hlmSidebarGroup>
+              <div hlmSidebarGroupLabel>{{ formatGroupLabel(menuGroup) }}</div>
+              <div hlmSidebarGroupContent>
+                <ul hlmSidebarMenu>
+                  @for (item of menuGroup.items; track getItemTrackId(item)) {
+                    <li hlmSidebarMenuItem>
+                      @if (hasChildren(item)) {
+                        <button hlmSidebarMenuButton type="button" [tooltip]="item.title">
+                          <ng-icon [name]="item.icon" />
+                          <span>{{ item.title }}</span>
+                        </button>
+
+                        <ul hlmSidebarMenuSub>
+                          @for (child of item.children; track getItemTrackId(child)) {
+                            <li hlmSidebarMenuSubItem>
+                              <a
+                                hlmSidebarMenuSubButton
+                                [routerLink]="child.path"
+                                routerLinkActive
+                                #childRla="routerLinkActive"
+                                [attr.data-active]="childRla.isActive ? '' : null"
+                              >
+                                <span>{{ child.title }}</span>
+                              </a>
+                            </li>
+                          }
+                        </ul>
+                      } @else {
+                        <a
+                          hlmSidebarMenuButton
+                          [routerLink]="item.path"
+                          routerLinkActive
+                          #rla="routerLinkActive"
+                          [isActive]="rla.isActive"
+                          [tooltip]="item.title"
+                        >
+                          <ng-icon [name]="item.icon" />
+                          <span>{{ item.title }}</span>
+                        </a>
+                      }
+                    </li>
+                  }
+                </ul>
+              </div>
             </div>
-          </div>
+          }
         </div>
 
         <div hlmSidebarFooter>
@@ -81,10 +100,8 @@ type NavItem = {
 })
 export class AppSidebar {
   protected readonly appName = appEnv.name;
-
-  protected readonly navItems: NavItem[] = [
-    { title: 'Dashboard', path: '/dashboard', icon: 'lucideLayoutDashboard' },
-    { title: 'Tasks', path: '/tasks', icon: 'lucideListTodo' },
-    { title: 'Settings', path: '/settings', icon: 'lucideSettings' },
-  ];
+  protected readonly menuGroups = appMenuSidebar;
+  protected readonly formatGroupLabel = formatAppMenuGroupLabel;
+  protected readonly hasChildren = hasAppMenuChildren;
+  protected readonly getItemTrackId = getAppMenuItemTrackId;
 }

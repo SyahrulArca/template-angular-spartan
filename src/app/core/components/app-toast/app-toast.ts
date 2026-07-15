@@ -17,22 +17,22 @@ const TYPE_STYLES: Record<AppToastType, { accent: string; container: string }> =
   error: {
     accent: 'bg-[#e85d3a]',
     container:
-      'border-[#e85d3a]/50 bg-[#e85d3a]/40 text-foreground  shadow-[0_0_16px_rgba(232,93,58,0.28)]',
+      'border-[#e85d3a]/50 bg-[#e85d3a]/40 dark:bg-background/90 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(232,93,58,0.28)]',
   },
   success: {
-    accent: 'bg-emerald-500',
+    accent: 'bg-emerald-600',
     container:
-      'border-emerald-500/50 bg-emerald-500/40 text-foreground shadow-[0_0_16px_rgba(16,185,129,0.28)]',
+      'border-emerald-500/50 bg-emerald-600/40 dark:bg-background/90 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(16,185,129,0.28)]',
   },
   warning: {
-    accent: 'bg-amber-400',
+    accent: 'bg-amber-600',
     container:
-      'border-amber-400/50 bg-amber-400/40 text-foreground shadow-[0_0_16px_rgba(251,191,36,0.28)]',
+      'border-amber-400/50 bg-amber-600/40 dark:bg-background/90 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(251,191,36,0.28)]',
   },
   info: {
-    accent: 'bg-sky-400',
+    accent: 'bg-sky-600',
     container:
-      'border-sky-400/50 bg-sky-400/40 text-foreground shadow-[0_0_16px_rgba(56,189,248,0.28)]',
+      'border-sky-400/50 bg-sky-600/40 dark:bg-background/90 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(56,189,248,0.28)]',
   },
 };
 

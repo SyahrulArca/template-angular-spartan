@@ -2,15 +2,16 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideLogOut, lucideMoon, lucideSun, lucideUser } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { filter, map } from 'rxjs';
 import { ThemeService } from '../../core/services/theme.service';
+import { AppHeaderNotification } from './ui/app-header-notification/app-header-notification';
+import { AppHeaderProduct } from './ui/app-header-product/app-header-product';
+import { AppHeaderUser } from './ui/app-header-user/app-header-user';
 
 @Component({
   selector: 'app-header',
@@ -19,17 +20,16 @@ import { ThemeService } from '../../core/services/theme.service';
     HlmSidebarImports,
     HlmBreadcrumbImports,
     HlmButtonImports,
-    HlmDropdownMenuImports,
-    HlmAvatarImports,
     HlmSeparatorImports,
     NgIcon,
+    AppHeaderProduct,
+    AppHeaderNotification,
+    AppHeaderUser,
   ],
   providers: [
     provideIcons({
       lucideSun,
       lucideMoon,
-      lucideUser,
-      lucideLogOut,
     }),
   ],
   template: `
@@ -57,6 +57,7 @@ import { ThemeService } from '../../core/services/theme.service';
       </nav>
 
       <div class="flex shrink-0 items-center gap-4">
+        <!-- navbar theme -->
         <button
           hlmBtn
           variant="ghost"
@@ -72,41 +73,14 @@ import { ThemeService } from '../../core/services/theme.service';
           }
         </button>
 
-        <button
-          hlmBtn
-          variant="ghost"
-          size="icon-sm"
-          type="button"
-          [hlmDropdownMenuTrigger]="userMenu"
-          aria-label="User menu"
-        >
-          <hlm-avatar class="size-8">
-            <span hlmAvatarFallback>ST</span>
-          </hlm-avatar>
-        </button>
+        <!-- navbar list product -->
+        <app-header-product />
 
-        <ng-template #userMenu>
-          <div hlmDropdownMenu class="w-56">
-            <div class="flex items-center gap-2 px-2 py-1.5">
-              <hlm-avatar class="size-8">
-                <span hlmAvatarFallback>ST</span>
-              </hlm-avatar>
-              <div class="flex min-w-0 flex-col">
-                <span class="truncate text-sm font-medium">Template User</span>
-                <span class="text-muted-foreground truncate text-xs">user@example.com</span>
-              </div>
-            </div>
-            <div hlmDropdownMenuSeparator></div>
-            <button hlmDropdownMenuItem type="button">
-              <ng-icon name="lucideUser" />
-              Profile
-            </button>
-            <button hlmDropdownMenuItem type="button" variant="destructive">
-              <ng-icon name="lucideLogOut" />
-              Log out
-            </button>
-          </div>
-        </ng-template>
+        <!-- navbar notification -->
+        <app-header-notification />
+
+        <!-- navbar user -->
+        <app-header-user />
       </div>
     </header>
   `,

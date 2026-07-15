@@ -46,6 +46,23 @@
 
   <section hlmCard>
     <div hlmCardHeader>
+      <h2 hlmCardTitle>Confirm dialog</h2>
+      <p hlmCardDescription>
+        Buka dialog konfirmasi secara imperative lewat
+        <code class="text-xs">inject(ConfirmService)</code> di
+        <code class="text-xs">core/services/confirm</code>.
+      </p>
+    </div>
+    <div hlmCardContent class="flex flex-wrap items-center gap-3">
+      <button hlmBtn type="button" (click)="openDefaultConfirm()">Default</button>
+      <button hlmBtn variant="destructive" type="button" (click)="openDestructiveConfirm()">
+        Destructive
+      </button>
+    </div>
+  </section>
+
+  <section hlmCard>
+    <div hlmCardHeader>
       <h2 hlmCardTitle>Getting started</h2>
       <p hlmCardDescription>
         This layout includes sidebar navigation, breadcrumbs, dark mode, and toast

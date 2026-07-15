@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
 import { hlmP } from '@spartan-ng/helm/typography';
 import { appToast, type AppToastLocation } from '../../core/components/app-toast';
+import { ConfirmService } from '../../core/services/confirm';
 import { ToastDemoAction } from './ui/toast-demo-action/toast-demo-action';
 
 const TOAST_LOCATIONS: AppToastLocation[] = [
@@ -21,6 +22,8 @@ const TOAST_LOCATIONS: AppToastLocation[] = [
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
+  private readonly confirm = inject(ConfirmService);
+
   protected readonly toastLocations = TOAST_LOCATIONS;
 
   protected showSuccess(): void {
@@ -61,7 +64,7 @@ export class Dashboard {
 
   protected showWithAction(): void {
     appToast({
-      type: 'warning',
+      type: 'success',
       title: 'Task will be deleted',
       description: 'You can still undo this action.',
       action: ToastDemoAction,
@@ -75,5 +78,34 @@ export class Dashboard {
       description: 'Position is controlled via the location option.',
       location,
     });
+  }
+
+  protected openDefaultConfirm(): void {
+    this.confirm
+      .open({
+        title: 'Simpan perubahan?',
+        description: 'Perubahan akan diterapkan ke data lokal.',
+      })
+      .subscribe((confirmed) => {
+        appToast({
+          type: confirmed ? 'success' : 'info',
+          title: confirmed ? 'Perubahan disimpan.' : 'Dibatalkan.',
+        });
+      });
+  }
+
+  protected openDestructiveConfirm(): void {
+    this.confirm
+      .open({
+        title: 'Hapus item?',
+        description: 'Tindakan ini tidak dapat dibatalkan.',
+        confirmLabel: 'Hapus',
+        variant: 'destructive',
+      })
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          appToast({ type: 'success', title: 'Item dihapus.' });
+        }
+      });
   }
 }

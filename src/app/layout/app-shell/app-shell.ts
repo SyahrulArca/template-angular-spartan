@@ -19,7 +19,7 @@ import { AppSidebar } from '../app-sidebar/app-sidebar';
         <app-header />
 
         <div class="flex min-h-0 flex-1 flex-col overflow-y-auto">
-          <div class="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 p-4 md:p-6">
+          <div class="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start p-4 md:px-6">
             <router-outlet />
           </div>
         </div>

@@ -3,8 +3,18 @@
 @import 'tailwindcss/preflight.css' layer(base);
 @import 'tailwindcss/utilities.css';
 
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/lora';
+
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
 /* You can add global styles to this file, and also import other style files */
+
+@theme {
+  --font-sans: 'Geist Variable', Geist, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: 'Lora Variable', Lora, ui-serif, serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+}
 
 :root {
   /* Brand palette */
@@ -21,11 +31,10 @@
 
   color-scheme: light;
 
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
   --radius: 0.625rem;
+  --tracking-normal: 0.05em;
+  --spacing: 0.25rem;
+
   --background: var(--brand-off-white);
   --foreground: var(--brand-charcoal);
   --card: #ffffff;
@@ -37,7 +46,7 @@
   --secondary: color-mix(in srgb, var(--brand-gray) 18%, var(--brand-off-white));
   --secondary-foreground: var(--brand-charcoal);
   --muted: var(--brand-muted);
-  --muted-foreground: var(--brand-gray);
+  --muted-foreground: var(--brand-charcoal);
   --accent: color-mix(in srgb, var(--brand-glare) 22%, var(--brand-off-white));
   --accent-foreground: var(--brand-charcoal);
   --destructive: var(--brand-orange);
@@ -96,6 +105,6 @@
     @apply h-full overflow-x-hidden;
   }
   body {
-    @apply bg-background text-foreground min-h-full overflow-x-hidden;
+    @apply bg-background text-foreground min-h-full overflow-x-hidden font-sans;
   }
 }
