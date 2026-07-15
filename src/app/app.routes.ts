@@ -13,6 +13,12 @@ export const routes: Routes = [
     data: { breadcrumb: 'Dashboard' },
   },
   {
+    path: 'tasks',
+    loadComponent: () => import('./features/tasks/pages/task-page/task-page').then((m) => m.TaskPage),
+    title: 'Tasks',
+    data: { breadcrumb: 'Tasks' },
+  },
+  {
     path: 'settings',
     loadComponent: () => import('./features/settings/settings').then((m) => m.Settings),
     title: 'Settings',

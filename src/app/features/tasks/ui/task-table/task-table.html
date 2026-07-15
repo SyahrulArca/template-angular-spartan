@@ -1,0 +1,72 @@
+<section hlmCard>
+  <div hlmCardHeader>
+    <h2 hlmCardTitle>All tasks</h2>
+    <p hlmCardDescription>Manage tasks stored locally in a signal-based store.</p>
+  </div>
+
+  <div hlmCardContent class="p-0">
+    @if (tasks().length === 0) {
+      <div class="text-muted-foreground flex flex-col items-center gap-2 px-6 py-12 text-center text-sm">
+        <p class="text-foreground font-medium">No tasks yet</p>
+        <p>Create your first task using the button above.</p>
+      </div>
+    } @else {
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[640px] text-sm">
+          <thead>
+            <tr class="border-b text-start">
+              <th class="text-muted-foreground px-6 py-3 font-medium">Title</th>
+              <th class="text-muted-foreground px-4 py-3 font-medium">Status</th>
+              <th class="text-muted-foreground hidden px-4 py-3 font-medium md:table-cell">Updated</th>
+              <th class="text-muted-foreground px-6 py-3 text-end font-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (task of tasks(); track task.id) {
+              <tr class="border-b last:border-b-0">
+                <td class="px-6 py-4 align-top">
+                  <div class="flex flex-col gap-1">
+                    <span class="font-medium">{{ task.title }}</span>
+                    @if (task.description) {
+                      <span class="text-muted-foreground line-clamp-2 text-xs">{{ task.description }}</span>
+                    }
+                  </div>
+                </td>
+                <td class="px-4 py-4 align-top">
+                  <app-task-status-badge [status]="task.status" />
+                </td>
+                <td class="text-muted-foreground hidden px-4 py-4 align-top md:table-cell">
+                  {{ task.updatedAt | date: 'medium' }}
+                </td>
+                <td class="px-6 py-4 align-top">
+                  <div class="flex justify-end gap-1">
+                    <button
+                      hlmBtn
+                      variant="ghost"
+                      size="icon-sm"
+                      type="button"
+                      (click)="editTask.emit(task.id)"
+                      [attr.aria-label]="'Edit ' + task.title"
+                    >
+                      <ng-icon name="lucidePencil" />
+                    </button>
+                    <button
+                      hlmBtn
+                      variant="ghost"
+                      size="icon-sm"
+                      type="button"
+                      (click)="deleteTask.emit(task.id)"
+                      [attr.aria-label]="'Delete ' + task.title"
+                    >
+                      <ng-icon name="lucideTrash2" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</section>

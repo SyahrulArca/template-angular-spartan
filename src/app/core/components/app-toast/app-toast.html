@@ -1,0 +1,41 @@
+<div
+  class="flex w-full min-w-[320px] p-4 max-w-md items-stretch overflow-hidden rounded-xl border backdrop-blur-sm"
+  [class]="containerClass()"
+  role="status"
+  aria-live="polite"
+>
+  <div class="w-1" [class]="accentClass()"></div>
+
+  <div class="flex min-w-0 flex-1 items-start gap-3 px-4 py-3">
+    <div class="min-w-0 flex-1">
+      <p class="text-sm leading-snug text-foreground">
+        <span class="font-bold">{{ typeLabel() }}:</span>
+        <span> {{ title() }}</span>
+      </p>
+
+      @if (description()) {
+        <p class="mt-0.5 text-sm leading-snug text-foreground/80">
+          {{ description() }}
+        </p>
+      }
+
+      @if (action()) {
+        <div class="mt-3 shrink-0">
+          <ng-container
+            *ngComponentOutlet="action()!; inputs: actionInputs()"
+            class="text-foreground"
+          />
+        </div>
+      }
+    </div>
+
+    <button
+      type="button"
+      aria-label="Close toast"
+      class="shrink-0 rounded-md p-1 text-foreground transition-colors hover:text-foreground/80"
+      (click)="close()"
+    >
+      <ng-icon name="lucideX" class="size-4" />
+    </button>
+  </div>
+</div>

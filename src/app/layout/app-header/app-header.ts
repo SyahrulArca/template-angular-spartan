@@ -2,12 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import {
-  lucideLogOut,
-  lucideMoon,
-  lucideSun,
-  lucideUser,
-} from '@ng-icons/lucide';
+import { lucideLogOut, lucideMoon, lucideSun, lucideUser } from '@ng-icons/lucide';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -61,7 +56,7 @@ import { ThemeService } from '../../core/services/theme.service';
         </ol>
       </nav>
 
-      <div class="flex shrink-0 items-center gap-1">
+      <div class="flex shrink-0 items-center gap-4">
         <button
           hlmBtn
           variant="ghost"

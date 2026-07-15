@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideLayoutDashboard, lucideSettings } from '@ng-icons/lucide';
+import { lucideLayoutDashboard, lucideListTodo, lucideSettings } from '@ng-icons/lucide';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { appEnv } from '../../core/config/app-env';
 
 type NavItem = {
   title: string;
@@ -17,6 +18,7 @@ type NavItem = {
   providers: [
     provideIcons({
       lucideLayoutDashboard,
+      lucideListTodo,
       lucideSettings,
     }),
   ],
@@ -33,7 +35,7 @@ type NavItem = {
               S
             </div>
             <div class="grid min-w-0 flex-1 text-start group-data-[collapsible=icon]:hidden">
-              <span class="truncate text-sm font-semibold">Spartan Template</span>
+              <span class="truncate text-sm font-semibold">{{ appName }}</span>
               <span class="text-muted-foreground truncate text-xs">Base admin layout</span>
             </div>
           </div>
@@ -78,8 +80,11 @@ type NavItem = {
   `,
 })
 export class AppSidebar {
+  protected readonly appName = appEnv.name;
+
   protected readonly navItems: NavItem[] = [
     { title: 'Dashboard', path: '/dashboard', icon: 'lucideLayoutDashboard' },
+    { title: 'Tasks', path: '/tasks', icon: 'lucideListTodo' },
     { title: 'Settings', path: '/settings', icon: 'lucideSettings' },
   ];
 }

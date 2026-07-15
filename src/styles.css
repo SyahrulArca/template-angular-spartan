@@ -7,6 +7,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
+  /* Brand palette */
+  --brand-glare: #d9ff03;
+  --brand-orange: #fd572a;
+  --brand-blue-violet: #695ac6;
+  --brand-charcoal: #201f1f;
+  --brand-charcoal-sidebar: #1a1a1a;
+  --brand-black: #000000;
+  --brand-off-white: #f2efeb;
+  --brand-off-white-sidebar: #e7e5e1;
+  --brand-gray: #a6a8ab;
+  --brand-muted: rgba(166, 168, 171, 0.22);
+
   color-scheme: light;
 
   --font-sans:
@@ -14,64 +26,66 @@
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: var(--brand-off-white);
+  --foreground: var(--brand-charcoal);
+  --card: #ffffff;
+  --card-foreground: var(--brand-charcoal);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-charcoal);
+  --primary: var(--brand-blue-violet);
+  --primary-foreground: var(--brand-off-white);
+  --secondary: color-mix(in srgb, var(--brand-gray) 18%, var(--brand-off-white));
+  --secondary-foreground: var(--brand-charcoal);
+  --muted: var(--brand-muted);
+  --muted-foreground: var(--brand-gray);
+  --accent: color-mix(in srgb, var(--brand-glare) 22%, var(--brand-off-white));
+  --accent-foreground: var(--brand-charcoal);
+  --destructive: var(--brand-orange);
+  --destructive-foreground: var(--brand-off-white);
+  --border: color-mix(in srgb, var(--brand-gray) 35%, transparent);
+  --input: color-mix(in srgb, var(--brand-gray) 35%, transparent);
+  --ring: var(--brand-blue-violet);
+  --sidebar: var(--brand-off-white-sidebar);
+  --sidebar-foreground: var(--brand-charcoal);
+  --sidebar-primary: var(--brand-blue-violet);
+  --sidebar-primary-foreground: var(--brand-off-white-sidebar);
+  --sidebar-accent: var(--brand-muted);
+  --sidebar-accent-foreground: var(--brand-charcoal);
+  --sidebar-border: color-mix(in srgb, var(--brand-gray) 35%, transparent);
+  --sidebar-ring: var(--brand-blue-violet);
 }
 
 :root.dark,
 .dark {
   color-scheme: dark;
 
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.985 0 0);
-  --sidebar-primary-foreground: oklch(0.205 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: var(--brand-charcoal);
+  --foreground: var(--brand-off-white);
+  --card: color-mix(in srgb, var(--brand-black) 35%, var(--brand-charcoal));
+  --card-foreground: var(--brand-off-white);
+  --popover: color-mix(in srgb, var(--brand-black) 35%, var(--brand-charcoal));
+  --popover-foreground: var(--brand-off-white);
+  --primary: var(--brand-blue-violet);
+  --primary-foreground: var(--brand-off-white);
+  --secondary: color-mix(in srgb, var(--brand-gray) 22%, var(--brand-charcoal));
+  --secondary-foreground: var(--brand-off-white);
+  --muted: var(--brand-muted);
+  --muted-foreground: var(--brand-gray);
+  --accent: color-mix(in srgb, var(--brand-glare) 14%, var(--brand-charcoal));
+  --accent-foreground: var(--brand-glare);
+  --destructive: var(--brand-orange);
+  --destructive-foreground: var(--brand-off-white);
+  --border: color-mix(in srgb, var(--brand-gray) 28%, transparent);
+  --input: color-mix(in srgb, var(--brand-gray) 28%, transparent);
+  --ring: var(--brand-blue-violet);
+  --sidebar: var(--brand-charcoal-sidebar);
+  --sidebar-foreground: var(--brand-off-white);
+  --sidebar-primary: var(--brand-glare);
+  --sidebar-primary-foreground: var(--brand-charcoal-sidebar);
+  --sidebar-accent: var(--brand-muted);
+  --sidebar-accent-foreground: var(--brand-off-white);
+  --sidebar-border: color-mix(in srgb, var(--brand-gray) 28%, transparent);
+  --sidebar-ring: var(--brand-blue-violet);
 }
 
 @layer base {

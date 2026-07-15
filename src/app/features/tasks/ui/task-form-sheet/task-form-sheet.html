@@ -1,0 +1,66 @@
+<hlm-sheet side="right" [state]="sheetState()" (stateChanged)="onSheetStateChanged($event)">
+  <hlm-sheet-content *hlmSheetPortal class="flex w-full flex-col gap-0 sm:max-w-md">
+    <hlm-sheet-header class="border-b pb-4">
+      <h2 hlmSheetTitle>{{ heading() }}</h2>
+      <p hlmSheetDescription>
+        @if (isEditMode()) {
+          Update task details. Changes are kept in memory only.
+        } @else {
+          Add a new task to the in-memory store.
+        }
+      </p>
+    </hlm-sheet-header>
+
+    <div class="px-4">
+      <form class="flex flex-1 flex-col gap-4 py-4" [formGroup]="form" (ngSubmit)="submit()">
+        <div hlmField>
+          <label hlmFieldLabel required for="task-title">Title</label>
+          <input hlmInput id="task-title" formControlName="title" placeholder="Task title" />
+          @if (form.controls.title.invalid && form.controls.title.touched) {
+            <hlm-field-error>Title is required (3–120 characters).</hlm-field-error>
+          }
+        </div>
+
+        <div hlmField>
+          <label hlmFieldLabel for="task-description">Description</label>
+          <textarea
+            hlmTextarea
+            id="task-description"
+            formControlName="description"
+            placeholder="Optional description"
+            rows="4"
+          ></textarea>
+          @if (form.controls.description.invalid && form.controls.description.touched) {
+            <hlm-field-error>Description must be at most 500 characters.</hlm-field-error>
+          }
+        </div>
+
+        <div hlmField>
+          <label hlmFieldLabel required for="task-status">Status</label>
+          <hlm-select
+            id="task-status"
+            [value]="form.controls.status.value"
+            (valueChange)="onStatusChange($event)"
+          >
+            <hlm-select-trigger class="w-full">
+              <hlm-select-value placeholder="Select status" />
+            </hlm-select-trigger>
+            <hlm-select-content
+              *hlmSelectPortal
+              class="w-full min-w-[var(--radix-select-trigger-width)]"
+            >
+              @for (option of statusOptions; track option.value) {
+                <hlm-select-item [value]="option.value">{{ option.label }}</hlm-select-item>
+              }
+            </hlm-select-content>
+          </hlm-select>
+        </div>
+
+        <hlm-sheet-footer class="mt-auto gap-2 border-t pt-4 sm:justify-end">
+          <button hlmBtn variant="outline" type="button" hlmSheetClose>Cancel</button>
+          <button hlmBtn type="submit">{{ isEditMode() ? 'Save changes' : 'Create task' }}</button>
+        </hlm-sheet-footer>
+      </form>
+    </div>
+  </hlm-sheet-content>
+</hlm-sheet>

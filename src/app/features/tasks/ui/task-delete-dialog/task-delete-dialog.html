@@ -1,0 +1,17 @@
+<hlm-alert-dialog [state]="dialogState()" (stateChanged)="onDialogStateChanged($event)">
+  <hlm-alert-dialog-content *hlmAlertDialogPortal>
+    <hlm-alert-dialog-header>
+      <h2 hlmAlertDialogTitle>Delete task?</h2>
+      <p hlmAlertDialogDescription>
+        "{{ taskTitle() }}" will be removed from the in-memory list. This action cannot be undone.
+      </p>
+    </hlm-alert-dialog-header>
+
+    <hlm-alert-dialog-footer>
+      <button hlmAlertDialogCancel type="button">Cancel</button>
+      <button hlmAlertDialogAction type="button" variant="destructive" (click)="confirmDelete()">
+        Delete
+      </button>
+    </hlm-alert-dialog-footer>
+  </hlm-alert-dialog-content>
+</hlm-alert-dialog>

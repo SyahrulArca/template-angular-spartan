@@ -26,12 +26,7 @@ import { AppSidebar } from '../app-sidebar/app-sidebar';
       </main>
     </app-sidebar>
 
-    <hlm-toaster
-      [theme]="theme.dark() ? 'dark' : 'light'"
-      richColors
-      closeButton
-      position="bottom-right"
-    />
+    <hlm-toaster [theme]="theme.dark() ? 'dark' : 'light'" position="bottom-right" />
   `,
 })
 export class AppShell {
