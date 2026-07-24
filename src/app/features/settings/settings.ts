@@ -2,16 +2,17 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { ThemeService } from '../../core/services/theme.service';
+import { AppPageHeader } from '../../layout/app-page-header/app-page-header';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HlmCardImports, HlmButtonImports],
+  imports: [AppPageHeader, HlmCardImports, HlmButtonImports],
   template: `
     <div class="flex flex-col gap-4">
-      <div>
-        <h1 class="text-2xl font-semibold tracking-tight">Settings</h1>
-        <p class="text-muted-foreground text-sm">Configure appearance and preferences.</p>
-      </div>
+      <app-app-page-header
+        title="Settings"
+        description="Configure appearance and preferences."
+      />
 
       <section hlmCard>
         <div hlmCardHeader>

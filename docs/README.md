@@ -8,3 +8,4 @@ Panduan pengembangan untuk template ini.
 | [component-conventions.md](./component-conventions.md) | Konvensi component & generator CLI |
 | [tasks-crud.md](./tasks-crud.md)                       | Sample modular CRUD Task           |
 | [suggest-deployment.md](./suggest-deployment.md)       | Deploy SPA ke Nginx & cache update |
+| [api-service.md](./api-service.md)                     | ApiService (HTTP) & Auth (session) |

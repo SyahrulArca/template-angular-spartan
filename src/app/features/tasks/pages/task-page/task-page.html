@@ -1,9 +1,31 @@
 <div class="flex flex-col gap-6">
-  <app-task-toolbar
-    [total]="total()"
-    [completedCount]="completedCount()"
-    (createTask)="openCreateForm()"
-  />
+  <app-app-page-header
+    title="Tasks"
+    [description]="pageDescription()"
+    [withNaration]="true"
+  >
+    <app-page-header-naration
+      title="About Tasks"
+      description="Sample CRUD feature using in-memory data."
+    >
+      <p>
+        This page demonstrates a full create-read-update-delete flow without a backend.
+        Tasks are stored in a signal-based store and reset when you refresh the page.
+      </p>
+      <ul class="mt-3 list-disc space-y-1 pl-5">
+        <li>Use <span class="text-foreground font-medium">Add task</span> to open the form sheet.</li>
+        <li>Edit or delete tasks from the table actions column.</li>
+        <li>Status can be todo, in progress, or done.</li>
+      </ul>
+    </app-page-header-naration>
+
+    <app-page-header-actions>
+      <button hlmBtn type="button" (click)="openCreateForm()">
+        <ng-icon name="lucidePlus" />
+        Add task
+      </button>
+    </app-page-header-actions>
+  </app-app-page-header>
 
   <app-task-table
     [tasks]="tasks()"

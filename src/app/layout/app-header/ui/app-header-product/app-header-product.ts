@@ -33,7 +33,7 @@ import {
     </button>
 
     <ng-template #productMenu>
-      <div hlmDropdownMenu class="w-128">
+      <div hlmDropdownMenu class="">
         <div hlmDropdownMenuLabel>Products</div>
         <div hlmDropdownMenuSeparator></div>
         <div hlmDropdownMenuGroup class="grid grid-cols-3 gap-2">

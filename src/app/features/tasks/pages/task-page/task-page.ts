@@ -1,15 +1,29 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { appToast } from '../../../../core/components/app-toast';
+import { AppPageHeader } from '../../../../layout/app-page-header/app-page-header';
+import { AppPageHeaderActions } from '../../../../layout/app-page-header/ui/app-page-header-actions/app-page-header-actions';
+import { AppPageHeaderNaration } from '../../../../layout/app-page-header/ui/app-page-header-naration/app-page-header-naration';
 import { TaskStore } from '../../data/task.store';
 import { TaskDeleteDialog } from '../../ui/task-delete-dialog/task-delete-dialog';
 import { TaskFormSheet } from '../../ui/task-form-sheet/task-form-sheet';
 import { TaskTable } from '../../ui/task-table/task-table';
-import { TaskToolbar } from '../../ui/task-toolbar/task-toolbar';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TaskStore],
-  imports: [TaskToolbar, TaskTable, TaskFormSheet, TaskDeleteDialog],
+  providers: [TaskStore, provideIcons({ lucidePlus })],
+  imports: [
+    AppPageHeader,
+    AppPageHeaderActions,
+    AppPageHeaderNaration,
+    HlmButtonImports,
+    NgIcon,
+    TaskTable,
+    TaskFormSheet,
+    TaskDeleteDialog,
+  ],
   templateUrl: './task-page.html',
 })
 export class TaskPage {
@@ -18,6 +32,11 @@ export class TaskPage {
   protected readonly tasks = this.store.tasks;
   protected readonly total = this.store.total;
   protected readonly completedCount = this.store.completedCount;
+
+  protected readonly pageDescription = computed(
+    () =>
+      `Sample CRUD with in-memory data — no API or database. ${this.completedCount()}/${this.total()} completed.`,
+  );
 
   protected readonly formTaskId = signal<string | null>(null);
   protected readonly formOpen = signal(false);

@@ -5,7 +5,10 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 import { hlmP } from '@spartan-ng/helm/typography';
 import { appToast, type AppToastLocation } from '../../core/components/app-toast';
 import { ConfirmService } from '../../core/services/confirm';
+import { AppPageHeader } from '../../layout/app-page-header/app-page-header';
 import { ToastDemoAction } from './ui/toast-demo-action/toast-demo-action';
+import { NumberFormat } from '../../core/components/formatter/number-format/number-format';
+import { SettingComponent } from '../../core/components/setting/app-setting/app-setting';
 
 const TOAST_LOCATIONS: AppToastLocation[] = [
   'top-left',
@@ -18,7 +21,7 @@ const TOAST_LOCATIONS: AppToastLocation[] = [
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HlmCardImports, HlmButtonImports, HlmSpinner],
+  imports: [AppPageHeader, HlmCardImports, HlmButtonImports, HlmSpinner, NumberFormat, SettingComponent],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {

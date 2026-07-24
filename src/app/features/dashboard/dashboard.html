@@ -1,10 +1,8 @@
 <div class="flex flex-col gap-4">
-  <div>
-    <h1 class="text-2xl font-semibold tracking-tight">Dashboard</h1>
-    <p class="text-muted-foreground text-sm">
-      Welcome to the Spartan base template. Start building from here.
-    </p>
-  </div>
+  <app-app-page-header
+    title="Dashboard"
+    description="Welcome to the Spartan base template. Start building from here."
+  />
 
   <section hlmCard>
     <div hlmCardHeader>
@@ -80,6 +78,31 @@
         <p hlmP class="text-foreground">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section hlmCard>
+    <div hlmCardHeader>
+      <h2 hlmCardTitle>Number Format</h2>
+      <p hlmCardDescription>
+        Example of number formatting using the NumberFormat component.
+      </p>
+    </div>
+    <div hlmCardContent>
+      <app-setting></app-setting>
+      <p class="text-muted-foreground text-sm">Display:</p>
+      <div class="flex flex-wrap items-center gap-3 p-2">
+        <app-number-format [value]="123456.375" [class]="'text-2xl'"></app-number-format>
+        <app-number-format [value]="-123456.375" [class]="'text-2xl'"></app-number-format>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 p-2">
+        <app-number-format [value]="123456.375" [withDecimal]="true" [class]="'text-2xl'"></app-number-format>
+        <app-number-format [value]="-123456.375" [withDecimal]="true" [class]="'text-2xl'"></app-number-format>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 p-2">
+        <app-number-format [value]="123456.375" [withDecimal]="true" prefix="Rp " [class]="'text-2xl'"></app-number-format>
+        <app-number-format [value]="-123456.375" [withDecimal]="true" prefix="Rp " [class]="'text-2xl'"></app-number-format>
       </div>
     </div>
   </section>
