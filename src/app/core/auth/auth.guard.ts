@@ -1,27 +1,46 @@
 import { inject } from '@angular/core';
 import { type CanActivateFn, Router } from '@angular/router';
-import { AuthSessionService } from './auth-session.service';
+import { AuthService } from './auth.service';
+import { redirectToSsoEntry, usesLocalLogin } from './auth-redirect.util';
 
 /** Lindungi route yang butuh user sudah login. */
-export const authGuard: CanActivateFn = () => {
-  const session = inject(AuthSessionService);
+export const authGuard: CanActivateFn = async (_route, state) => {
+  const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (session.isAuthenticated()) {
+  await auth.ensureSessionReady();
+
+  if (auth.isAuthenticated()) {
     return true;
   }
 
-  return router.createUrlTree(['/login']);
+  if (redirectToSsoEntry(state.url)) {
+    return false;
+  }
+
+  return router.createUrlTree(['/login'], {
+    queryParams: { redirect_uri: state.url },
+  });
 };
 
-/** Redirect user yang sudah login (mis. halaman login/register). */
-export const guestGuard: CanActivateFn = () => {
-  const session = inject(AuthSessionService);
+/** Halaman login — redirect jika sudah auth; SSO mode redirect ke provider eksternal. */
+export const guestGuard: CanActivateFn = async (_route, state) => {
+  const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (!session.isAuthenticated()) {
-    return true;
+  await auth.ensureSessionReady();
+
+  if (auth.isAuthenticated()) {
+    return router.createUrlTree(['/dashboard']);
   }
 
-  return router.createUrlTree(['/dashboard']);
+  if (!usesLocalLogin()) {
+    if (redirectToSsoEntry(state.url)) {
+      return false;
+    }
+
+    return router.createUrlTree(['/dashboard']);
+  }
+
+  return true;
 };

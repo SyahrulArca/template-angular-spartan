@@ -1,5 +1,18 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, finalize, map, shareReplay, tap } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
+import {
+  filter,
+  firstValueFrom,
+  Observable,
+  finalize,
+  map,
+  shareReplay,
+  tap,
+  catchError,
+  of,
+  take,
+  switchMap,
+} from 'rxjs';
 import { ApiService } from '../services/api/api.service';
 import {
   AUTH_LOGIN_PATH,
@@ -7,6 +20,7 @@ import {
   AUTH_ME_PATH,
   AUTH_REFRESH_PATH,
 } from './auth.constants';
+import { shouldRecoverSessionViaRefresh } from './auth-cookie.util';
 import { AuthSessionService } from './auth-session.service';
 import type { AuthUser, LoginCredentials } from './auth.types';
 
@@ -24,6 +38,7 @@ export class AuthService {
 
   readonly isAuthenticated = this.session.isAuthenticated;
   readonly currentUser = this.session.currentUser;
+  readonly sessionReady = this.session.sessionReady;
 
   login(credentials: LoginCredentials): Observable<void> {
     return this.api.post<void>(AUTH_LOGIN_PATH, credentials, { skipAuth: true }).pipe(
@@ -38,10 +53,47 @@ export class AuthService {
   }
 
   /** Validasi session dari cookie (mis. saat app boot). */
-  bootstrapSession(): Observable<AuthUser> {
+  bootstrapSession(): Observable<AuthUser | null> {
+    return this.fetchCurrentUser().pipe(
+      catchError(() => this.recoverSessionViaRefresh()),
+      finalize(() => this.session.markSessionReady()),
+    );
+  }
+
+  private fetchCurrentUser(): Observable<AuthUser> {
     return this.api.get<AuthUser>(AUTH_ME_PATH).pipe(
       tap((user) => this.session.markAuthenticated(user)),
     );
+  }
+
+  /**
+   * Access token expired tapi refresh + tenant cookie (httpOnly) masih ada.
+   * Browser kirim cookie otomatis via `withCredentials` ke `/auth/refresh`.
+   */
+  private recoverSessionViaRefresh(): Observable<AuthUser | null> {
+    if (!shouldRecoverSessionViaRefresh()) {
+      this.session.clearSession();
+      return of(null);
+    }
+
+    return this.refreshSession().pipe(
+      switchMap(() => this.fetchCurrentUser()),
+      catchError(() => {
+        this.session.clearSession();
+        return of(null);
+      }),
+    );
+  }
+
+  /** Tunggu bootstrap session selesai (untuk guard / initializer). */
+  ensureSessionReady(): Promise<void> {
+    if (this.session.sessionReady()) {
+      return Promise.resolve();
+    }
+
+    return firstValueFrom(
+      toObservable(this.session.sessionReady).pipe(filter(Boolean), take(1)),
+    ).then(() => undefined);
   }
 
   /**

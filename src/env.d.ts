@@ -5,6 +5,10 @@ declare interface Env {
   readonly NG_APP_NAME: string;
   readonly NG_APP_API_URL: string;
   readonly NG_APP_ENABLE_DEBUG: string;
+  readonly NG_APP_USE_SSO: string;
+  readonly NG_APP_REDIRECT_SSO: string;
+  readonly NG_APP_COOKIE_TENANT_KEY: string;
+  readonly NG_APP_COOKIE_REFRESH_KEY: string;
 }
 
 declare interface ImportMeta {

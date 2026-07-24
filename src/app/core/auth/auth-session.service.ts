@@ -13,9 +13,11 @@ import type { AuthUser } from './auth.types';
 export class AuthSessionService {
   private readonly authenticated = signal(false);
   private readonly user = signal<AuthUser | null>(null);
+  private readonly ready = signal(false);
 
   readonly isAuthenticated = this.authenticated.asReadonly();
   readonly currentUser = this.user.asReadonly();
+  readonly sessionReady = this.ready.asReadonly();
 
   markAuthenticated(user?: AuthUser | null): void {
     this.authenticated.set(true);
@@ -31,5 +33,9 @@ export class AuthSessionService {
   clearSession(): void {
     this.authenticated.set(false);
     this.user.set(null);
+  }
+
+  markSessionReady(): void {
+    this.ready.set(true);
   }
 }
