@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, model, input } from '@angular/core';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
-export interface DataTableStatusOption {
+export interface DatatableStatusOption {
   value: string;
   label: string;
   count?: number;
@@ -14,7 +14,7 @@ export interface DataTableStatusOption {
   templateUrl: './status-filter.html',
 })
 export class StatusFilter {
-  readonly options = input.required<DataTableStatusOption[]>();
+  readonly options = input.required<DatatableStatusOption[]>();
   readonly value = model<string | null>(null);
 
   protected onValueChange(next: string | string[] | null | undefined): void {

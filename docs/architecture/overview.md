@@ -50,8 +50,8 @@ Pola yang dianjurkan: DDD per feature. Model, state, API, dan UI sebuah kemampua
 
 | Bentuk | Kapan | Yang ada sekarang |
 | ------ | ----- | ----------------- |
-| **DDD** | Ada domain: tipe, daftar, aturan, atau CRUD | `tasks/` — `models/`, `data/`, `pages/`, `ui/` |
-| **Datar** | Belum ada domain, satu layar saja | `login/`, `dashboard/`, `settings/`, `not-found/` |
+| **DDD** | Ada domain: tipe, daftar, aturan, atau CRUD | `tasks/` — `models/`, `data/`, `pages/`, `ui/`; `dashboard/` — invoice sample di `models/`, `data/`, `utils/`, `ui/` |
+| **Datar** | Belum ada domain, satu layar saja | `login/`, `settings/`, `not-found/` |
 
 `tasks/` adalah referensi hidup. Feature lain belum punya `apis/` atau `services/`. Halaman datar yang kemudian tumbuh tetap dipecah di dalam foldernya sendiri.
 
@@ -115,6 +115,7 @@ Token tidak disimpan di frontend. Backend yang `Set-Cookie`. Detail HTTP ada di 
 | Tema gelap                                   | `ThemeService`               | root, `localStorage` key `theme`                  |
 | Format angka                                 | `NumberFormatContextService` | root, `localStorage`                              |
 | Daftar task                                  | `TaskStore`                  | **page** — `providers: [TaskStore]` di `TaskPage` |
+| Filter + halaman invoice                     | `InvoiceStore`               | **page** — `providers: [InvoiceStore]` di `Dashboard` |
 | Sheet terbuka, id yang diedit, target delete | signal di `TaskPage`         | component                                         |
 
 Store halaman sengaja tidak `providedIn: 'root'`, supaya state hilang saat page di-destroy.

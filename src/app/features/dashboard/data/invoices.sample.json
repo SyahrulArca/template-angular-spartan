@@ -108,5 +108,115 @@
     "status": "unpaid",
     "createdDaysAgo": 100,
     "updatedDaysAgo": 90
+  },
+  {
+    "id": "INV0938-09-001",
+    "amount": 4500,
+    "currency": "USD",
+    "email": "Aracely_Hirthe66@gmail.com",
+    "subject": "Service payment batch Sept 2023",
+    "status": "unpaid",
+    "createdDaysAgo": 2,
+    "updatedDaysAgo": 1
+  },
+  {
+    "id": "INV6789-09-002",
+    "amount": 50,
+    "currency": "CAD",
+    "email": "Ambrose.Von@hotmail.com",
+    "subject": "Product purchase",
+    "status": "past_due",
+    "createdDaysAgo": 4,
+    "updatedDaysAgo": null
+  },
+  {
+    "id": "INV2983-09-003",
+    "amount": 1000000,
+    "currency": "JPY",
+    "email": "Ruby14@hotmail.com",
+    "subject": "Product payment",
+    "status": "draft",
+    "createdDaysAgo": 5,
+    "updatedDaysAgo": 3
+  },
+  {
+    "id": "INV2344-09-004",
+    "amount": 300,
+    "currency": "GBP",
+    "email": "Gladys_Gibson@hotmail.com",
+    "subject": "Service Payment",
+    "status": "paid",
+    "createdDaysAgo": 6,
+    "updatedDaysAgo": 1
+  },
+  {
+    "id": "INV4578-09-005",
+    "amount": 400,
+    "currency": "SGD",
+    "email": "Lillian39@gmail.com",
+    "subject": "Service payment batch July 2023",
+    "status": "past_due",
+    "createdDaysAgo": 10,
+    "updatedDaysAgo": null
+  },
+  {
+    "id": "INV4567-09-008",
+    "amount": 150,
+    "currency": "USD",
+    "email": "Chandler_Fay99@gmail.com",
+    "subject": "Service payment",
+    "status": "paid",
+    "createdDaysAgo": 12,
+    "updatedDaysAgo": 9
+  },
+  {
+    "id": "INV3408-09-006",
+    "amount": 32500000,
+    "currency": "IDR",
+    "email": "Fausto_Gulgowski56@yahoo.com",
+    "subject": "Product purchase",
+    "status": "past_due",
+    "createdDaysAgo": 20,
+    "updatedDaysAgo": 18
+  },
+  {
+    "id": "INV1235-09-007",
+    "amount": 10,
+    "currency": "USD",
+    "email": "Frederic0@hotmail.com",
+    "subject": "Product purchase",
+    "status": "draft",
+    "createdDaysAgo": 25,
+    "updatedDaysAgo": 22
+  },
+  {
+    "id": "INV3456-09-009",
+    "amount": 2550000,
+    "currency": "IDR",
+    "email": "Selmer.OConnell@gmail.com",
+    "subject": "Product purchase",
+    "status": "past_due",
+    "createdDaysAgo": 50,
+    "updatedDaysAgo": null
+  },
+  {
+    "id": "INV2134-09-010",
+    "amount": 750000,
+    "currency": "IDR",
+    "email": "Petra_Bashirian46@gmail.com",
+    "subject": "Product purchase",
+    "status": "paid",
+    "createdDaysAgo": 70,
+    "updatedDaysAgo": 60
+  },
+  {
+    "id": "INV8801-06-011",
+    "amount": 900,
+    "currency": "EUR",
+    "email": "Mina.Parker@gmail.com",
+    "subject": "Retainer",
+    "status": "unpaid",
+    "createdDaysAgo": 100,
+    "updatedDaysAgo": 90
   }
 ]

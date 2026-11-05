@@ -1,0 +1,34 @@
+<form
+  appFormShellSingle
+  title="Form shell single"
+  description="Contoh FormShellSingle: satu level, tanpa detail."
+  submitLabel="Simpan draft"
+  [formGroup]="form"
+  [submitting]="submitting()"
+  (ngSubmit)="submit()"
+  (cancelled)="form.reset()"
+>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div hlmField>
+      <label hlmFieldLabel required for="quick-email">Email</label>
+      <input
+        hlmInput
+        id="quick-email"
+        type="email"
+        formControlName="email"
+        placeholder="nama@email.com"
+      />
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+        <hlm-field-error>Email wajib diisi dengan format yang benar.</hlm-field-error>
+      }
+    </div>
+
+    <div hlmField>
+      <label hlmFieldLabel required for="quick-subject">Subject</label>
+      <input hlmInput id="quick-subject" formControlName="subject" placeholder="Website redesign" />
+      @if (form.controls.subject.invalid && form.controls.subject.touched) {
+        <hlm-field-error>Subject wajib diisi (maks. 120 karakter).</hlm-field-error>
+      }
+    </div>
+  </div>
+</form>

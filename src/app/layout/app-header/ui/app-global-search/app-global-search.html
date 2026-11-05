@@ -1,0 +1,159 @@
+<button
+  hlmBtn
+  variant="outline"
+  size="sm"
+  type="button"
+  class="text-muted-foreground w-8 justify-center gap-2 px-0 sm:w-64 sm:justify-start sm:px-2 md:w-80 lg:w-[28rem]"
+  aria-label="Search (Ctrl+K)"
+  aria-haspopup="dialog"
+  (click)="show()"
+>
+  <ng-icon name="lucideSearch" />
+  <span class="hidden sm:inline">Search...</span>
+  <kbd
+    class="bg-muted ms-auto hidden h-5 items-center border px-1 font-mono text-[10px] font-semibold sm:inline-flex"
+  >
+    Ctrl K
+  </kbd>
+</button>
+
+<hlm-command-dialog
+  title="Global search"
+  description="Search pages, modules and actions"
+  dialogContentClass="w-[calc(100vw-2rem)] sm:max-w-2xl"
+  [state]="dialogState()"
+  (stateChange)="onStateChange($event)"
+>
+  <div hlmCommand [filter]="matchAll" [search]="query()" (searchChange)="setQuery($event)">
+    <!-- search row -->
+    <div hlmInputGroup class="h-12 rounded-none border-0 border-b shadow-none">
+      <div hlmInputGroupAddon class="ps-4">
+        <ng-icon name="lucideSearch" class="text-muted-foreground" />
+      </div>
+      <input
+        hlmInputGroupInput
+        brnCommandInput
+        class="text-sm"
+        placeholder="Search pages, modules, actions..."
+        aria-label="Search"
+        (keydown.tab)="cycleCategory($event, 1)"
+        (keydown.shift.tab)="cycleCategory($event, -1)"
+      />
+      <div hlmInputGroupAddon align="inline-end" class="gap-2 pe-4">
+        @if (query()) {
+          <button
+            hlmInputGroupButton
+            size="icon-xs"
+            aria-label="Clear search"
+            (click)="setQuery('')"
+          >
+            <ng-icon name="lucideX" />
+          </button>
+        }
+        <kbd class="bg-muted h-5 border px-1 font-mono text-[10px] leading-5 font-semibold"
+          >ESC</kbd
+        >
+      </div>
+    </div>
+
+    <!-- category filter -->
+    <div class="border-b px-4 py-2">
+      <div
+        hlmToggleGroup
+        type="single"
+        size="sm"
+        [nullable]="false"
+        [value]="category()"
+        (valueChange)="setCategory($event)"
+        aria-label="Filter by category"
+      >
+        @for (filter of filters(); track filter.value) {
+          <button hlmToggleGroupItem type="button" [value]="filter.value" class="gap-1.5">
+            {{ filter.label }}
+            <span class="text-muted-foreground font-mono text-[10px] tabular-nums">{{
+              filter.count
+            }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- results -->
+    <div hlmCommandList class="max-h-[min(60vh,28rem)] py-1">
+      @for (group of groups(); track group.value) {
+        <div hlmCommandGroup>
+          <div
+            hlmCommandGroupLabel
+            class="w-full px-4! pt-3 font-mono text-[11px] tracking-wider uppercase"
+          >
+            {{ group.label }}
+          </div>
+          @for (item of group.items; track item.id) {
+            <button
+              hlmCommandItem
+              class="gap-3 border-s-2 border-transparent px-4 py-2 data-selected:border-foreground"
+              [value]="item.id"
+              (selected)="run(item)"
+            >
+              <span class="bg-muted flex size-8 shrink-0 items-center justify-center border">
+                <ng-icon [name]="item.icon" />
+              </span>
+              <span class="flex min-w-0 flex-1 flex-col gap-0.5 text-start">
+                <span class="truncate text-sm font-medium">
+                  @for (part of highlight(item.title, query()); track $index) {
+                    <span [class]="part.match ? 'bg-foreground/15 text-foreground' : ''">{{
+                      part.text
+                    }}</span>
+                  }
+                  <span class="text-muted-foreground font-normal"> — {{ item.subtitle }}</span>
+                </span>
+                @if (item.meta) {
+                  <span class="text-muted-foreground truncate font-mono text-[11px]">{{
+                    item.meta
+                  }}</span>
+                }
+              </span>
+              <span
+                hlmBadge
+                variant="outline"
+                class="shrink-0 font-mono text-[10px] tracking-wider uppercase"
+              >
+                {{ item.badge }}
+              </span>
+            </button>
+          }
+        </div>
+      } @empty {
+        <p hlmCommandEmpty class="text-muted-foreground">No results for "{{ query() }}".</p>
+      }
+    </div>
+
+    <!-- footer -->
+    <div
+      class="text-muted-foreground flex flex-wrap items-center justify-between gap-2 border-t px-4 py-2 text-[11px]"
+    >
+      <div class="hidden items-center gap-3 sm:flex">
+        <span class="flex items-center gap-1">
+          <kbd class="bg-muted border px-1 font-mono text-[10px]">↑</kbd>
+          <kbd class="bg-muted border px-1 font-mono text-[10px]">↓</kbd>
+          Navigate
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd class="bg-muted border px-1 font-mono text-[10px]">↵</kbd>
+          Select
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd class="bg-muted border px-1 font-mono text-[10px]">Tab</kbd>
+          Cycle filter
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd class="bg-muted border px-1 font-mono text-[10px]">Esc</kbd>
+          Dismiss
+        </span>
+      </div>
+      <span class="tabular-nums" aria-live="polite">
+        Showing {{ shownCount() }} of {{ totalCount }} results
+      </span>
+    </div>
+  </div>
+</hlm-command-dialog>

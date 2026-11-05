@@ -1,20 +1,20 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
-import { hlmP } from '@spartan-ng/helm/typography';
+import { HlmP } from '@spartan-ng/helm/typography';
 import { appToast, type AppToastLocation } from '../../core/components/app-toast';
-import { DataTable } from '../../core/components/data-table/data-table';
-import {
-  DEFAULT_DATE_RANGE_PRESET,
-  type DateRange,
-  rangeFromPreset,
-} from '../../core/constanta/date-range-preset';
-import { DateUtil } from '../../core/utils/date.util';
+import { DatatableFilter } from '../../core/components/datatable-filter/datatable-filter';
+import { EmptyData } from '../../core/components/empty-data/empty-data';
+import { SearchInput } from '../../core/components/search-input/search-input';
 import { ConfirmService } from '../../core/services/confirm';
 import { AppPageHeader } from '../../layout/app-page-header/app-page-header';
-import { filterInvoices, invoiceRows, type InvoiceStatus } from './invoices.sample';
+import { INVOICE_PAGE_SIZES, InvoiceStore } from './data/invoice.store';
+import { InvoiceFilterDialog } from './ui/invoice-filter-dialog/invoice-filter-dialog';
+import { InvoiceLinesForm } from './ui/invoice-lines-form/invoice-lines-form';
+import { InvoiceQuickForm } from './ui/invoice-quick-form/invoice-quick-form';
+import { InvoiceTable } from './ui/invoice-table/invoice-table';
 import { ToastDemoAction } from './ui/toast-demo-action/toast-demo-action';
 import { NumberFormat } from '../../core/components/formatter/number-format/number-format';
 import { SettingComponent } from '../../core/components/setting/app-setting/app-setting';
@@ -30,66 +30,32 @@ const TOAST_LOCATIONS: AppToastLocation[] = [
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [InvoiceStore],
   imports: [
     AppPageHeader,
     HlmCardImports,
     HlmButtonImports,
     HlmSpinner,
+    HlmP,
     NumberFormat,
     SettingComponent,
-    DataTable,
-    HlmBadgeImports,
+    DatatableFilter,
+    HlmPaginationImports,
+    InvoiceTable,
+    InvoiceFilterDialog,
+    EmptyData,
+    SearchInput,
+    InvoiceQuickForm,
+    InvoiceLinesForm,
   ],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
   private readonly confirm = inject(ConfirmService);
+  protected readonly invoices = inject(InvoiceStore);
 
   protected readonly toastLocations = TOAST_LOCATIONS;
-  protected readonly DateUtil = DateUtil;
-
-  private readonly invoices = invoiceRows();
-
-  protected readonly invoiceStatus = signal('all');
-  protected readonly invoiceRange = signal<DateRange | null>(
-    rangeFromPreset(DEFAULT_DATE_RANGE_PRESET),
-  );
-
-  protected readonly invoicesInRange = computed(() =>
-    filterInvoices(this.invoices, this.invoiceRange(), null),
-  );
-
-  protected readonly visibleInvoices = computed(() =>
-    filterInvoices(this.invoices, this.invoiceRange(), this.invoiceStatus()),
-  );
-
-  protected readonly invoiceStatuses = computed(() => {
-    const rows = this.invoicesInRange();
-    const count = (status: InvoiceStatus) => rows.filter((row) => row.status === status).length;
-    return [
-      { value: 'all', label: 'All', count: rows.length },
-      { value: 'unpaid', label: 'Unpaid', count: count('unpaid') },
-      { value: 'draft', label: 'Draft', count: count('draft') },
-      { value: 'past_due', label: 'Past due', count: count('past_due') },
-      { value: 'paid', label: 'Paid', count: count('paid') },
-    ];
-  });
-
-  protected statusLabel(status: InvoiceStatus): string {
-    if (status === 'past_due') return 'Past due';
-    if (status === 'unpaid') return 'Unpaid';
-    if (status === 'draft') return 'Draft';
-    return 'Paid';
-  }
-
-  protected statusVariant(
-    status: InvoiceStatus,
-  ): 'default' | 'secondary' | 'destructive' | 'outline' {
-    if (status === 'paid') return 'default';
-    if (status === 'past_due') return 'destructive';
-    if (status === 'draft') return 'secondary';
-    return 'outline';
-  }
+  protected readonly pageSizes = INVOICE_PAGE_SIZES;
 
   protected showSuccess(): void {
     appToast({

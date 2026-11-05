@@ -1,5 +1,5 @@
 import { NumberInput } from '@angular/cdk/coercion';
-import { Directive, input, numberAttribute } from '@angular/core';
+import { Directive, forwardRef, input, numberAttribute } from '@angular/core';
 import { BrnToggleGroup } from '@spartan-ng/brain/toggle-group';
 import { ToggleVariants } from '@spartan-ng/helm/toggle';
 import { classes } from '@spartan-ng/helm/utils';
@@ -7,7 +7,7 @@ import { provideHlmToggleGroup } from './hlm-toggle-group.token';
 
 @Directive({
   selector: '[hlmToggleGroup],hlm-toggle-group',
-  providers: [provideHlmToggleGroup(HlmToggleGroup)],
+  providers: [provideHlmToggleGroup(forwardRef(() => HlmToggleGroup))],
   hostDirectives: [
     {
       directive: BrnToggleGroup,

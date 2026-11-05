@@ -1,12 +1,26 @@
-import { type ExistingProvider, InjectionToken, type Type, inject } from '@angular/core';
-import type { HlmToggleGroup } from './hlm-toggle-group';
+import {
+  type ExistingProvider,
+  type ForwardRefFn,
+  InjectionToken,
+  inject,
+  type Type,
+} from '@angular/core';
+import type { ToggleVariants } from '@spartan-ng/helm/toggle';
 
-export const HlmToggleGroupToken = new InjectionToken<HlmToggleGroup>('HlmToggleGroupToken');
+export interface HlmToggleGroupContext {
+  variant(): ToggleVariants['variant'];
+  size(): ToggleVariants['size'];
+  spacing(): number;
+}
 
-export function injectHlmToggleGroup(): HlmToggleGroup {
+export const HlmToggleGroupToken = new InjectionToken<HlmToggleGroupContext>('HlmToggleGroupToken');
+
+export function injectHlmToggleGroup(): HlmToggleGroupContext {
   return inject(HlmToggleGroupToken);
 }
 
-export function provideHlmToggleGroup(toggleGroup: Type<HlmToggleGroup>): ExistingProvider {
+export function provideHlmToggleGroup(
+  toggleGroup: Type<unknown> | ForwardRefFn,
+): ExistingProvider {
   return { provide: HlmToggleGroupToken, useExisting: toggleGroup };
 }

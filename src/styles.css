@@ -25,7 +25,10 @@
   --brand-walnut: #775f52;
   --brand-cocoa: #4d392e;
   --brand-deep-cocoa: #332319;
+  --brand-dark: #0b090c;
   --brand-orange: #fd572a;
+
+  --brand-success: #22472f;
 
   color-scheme: light;
 
@@ -67,19 +70,19 @@
 .dark {
   color-scheme: dark;
 
-  --background: var(--brand-cocoa);
+  --background: var(--brand-dark);
   --foreground: var(--brand-ivory);
-  --card: var(--brand-deep-cocoa);
+  --card: color-mix(in srgb, var(--brand-deep-cocoa) 18%, var(--brand-dark));
   --card-foreground: var(--brand-ivory);
   --popover: color-mix(in srgb, var(--brand-walnut) 28%, var(--brand-deep-cocoa));
   --popover-foreground: var(--brand-ivory);
   --primary: var(--brand-mushroom);
-  --primary-foreground: var(--brand-deep-cocoa);
+  --primary-foreground: var(--brand-dark);
   --secondary: color-mix(in srgb, var(--brand-walnut) 24%, var(--brand-deep-cocoa));
   --secondary-foreground: var(--brand-ivory);
-  --muted: color-mix(in srgb, var(--brand-mushroom) 14%, var(--brand-deep-cocoa));
+  --muted: color-mix(in srgb, var(--brand-mushroom) 32%, var(--brand-deep-cocoa));
   --muted-foreground: var(--brand-oat-beige);
-  --accent: color-mix(in srgb, var(--brand-oat-beige) 14%, var(--brand-deep-cocoa));
+  --accent: color-mix(in srgb, var(--brand-oat-beige) 16%, var(--brand-deep-cocoa));
   --accent-foreground: var(--brand-oat-beige);
   --destructive: var(--brand-orange);
   --destructive-foreground: #ffffff;

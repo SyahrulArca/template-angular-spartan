@@ -1,0 +1,29 @@
+<hlm-dialog>
+  <button hlmBtn hlmDialogTrigger variant="outline" type="button">
+    Filter
+    @if (store.search()) {
+      <span class="text-muted-foreground">(1)</span>
+    }
+  </button>
+  <hlm-dialog-content *hlmDialogPortal class="sm:max-w-md">
+    <hlm-dialog-header>
+      <h2 hlmDialogTitle>Filter invoice</h2>
+      <p hlmDialogDescription>Cari berdasarkan nomor invoice, email, atau subject.</p>
+    </hlm-dialog-header>
+
+    <div hlmField>
+      <label hlmFieldLabel for="invoice-search">Cari</label>
+      <app-search-input
+        inputId="invoice-search"
+        placeholder="INV2344, gladys, ..."
+        [value]="store.search()"
+        (valueChange)="store.setSearch($event)"
+      />
+    </div>
+
+    <hlm-dialog-footer>
+      <button hlmBtn variant="outline" type="button" (click)="store.setSearch('')">Reset</button>
+      <button hlmBtn hlmDialogClose type="button">Selesai</button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

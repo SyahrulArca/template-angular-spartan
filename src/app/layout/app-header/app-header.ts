@@ -9,6 +9,7 @@ import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { filter, map } from 'rxjs';
 import { ThemeService } from '../../core/services/theme.service';
+import { AppGlobalSearch } from './ui/app-global-search/app-global-search';
 import { AppHeaderNotification } from './ui/app-header-notification/app-header-notification';
 import { AppHeaderProduct } from './ui/app-header-product/app-header-product';
 import { AppHeaderUser } from './ui/app-header-user/app-header-user';
@@ -25,6 +26,7 @@ import { AppHeaderUser } from './ui/app-header-user/app-header-user';
     AppHeaderProduct,
     AppHeaderNotification,
     AppHeaderUser,
+    AppGlobalSearch,
   ],
   providers: [
     provideIcons({
@@ -36,27 +38,33 @@ import { AppHeaderUser } from './ui/app-header-user/app-header-user';
     <header
       class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-10 flex h-14 shrink-0 items-center gap-3 border-b px-4 md:px-6 backdrop-blur"
     >
-      <button hlmSidebarTrigger variant="ghost" size="icon-sm" type="button">
-        <span class="sr-only">Toggle sidebar</span>
-      </button>
+      <!-- left and right groups share flex-1 so the search sits in the true center -->
+      <div class="flex min-w-0 flex-1 items-center gap-3">
+        <button hlmSidebarTrigger variant="ghost" size="icon-sm" type="button">
+          <span class="sr-only">Toggle sidebar</span>
+        </button>
 
-      <div hlmSeparator orientation="vertical" class="hidden h-4! sm:block"></div>
+        <div hlmSeparator orientation="vertical" class="hidden h-4! sm:block"></div>
 
-      <nav hlmBreadcrumb class="min-w-0 flex-1">
-        <ol hlmBreadcrumbList>
-          <li hlmBreadcrumbItem>
-            <a hlmBreadcrumbLink link="/dashboard">Home</a>
-          </li>
-          @if (breadcrumb() !== 'Home') {
-            <li hlmBreadcrumbSeparator></li>
+        <nav hlmBreadcrumb class="min-w-0">
+          <ol hlmBreadcrumbList>
             <li hlmBreadcrumbItem>
-              <span hlmBreadcrumbPage>{{ breadcrumb() }}</span>
+              <a hlmBreadcrumbLink link="/dashboard">Home</a>
             </li>
-          }
-        </ol>
-      </nav>
+            @if (breadcrumb() !== 'Home') {
+              <li hlmBreadcrumbSeparator></li>
+              <li hlmBreadcrumbItem>
+                <span hlmBreadcrumbPage>{{ breadcrumb() }}</span>
+              </li>
+            }
+          </ol>
+        </nav>
+      </div>
 
-      <div class="flex shrink-0 items-center gap-4">
+      <!-- navbar global search -->
+      <app-global-search />
+
+      <div class="flex flex-1 items-center justify-end gap-4">
         <!-- navbar theme -->
         <button
           hlmBtn

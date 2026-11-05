@@ -1,22 +1,8 @@
-import type { DateRange } from '../../core/constanta/date-range-preset';
-import sample from './invoices.sample.json';
+import type { DateRange } from '../../../core/constanta/date-range-preset';
+import sample from '../data/invoices.sample.json';
+import { INVOICE_STATUS_OPTIONS, type Invoice, type InvoiceStatus } from '../models/invoice.model';
 
-export type InvoiceStatus = 'unpaid' | 'past_due' | 'draft' | 'paid';
-
-export interface InvoiceRow {
-  id: string;
-  amount: number;
-  currency: string;
-  email: string;
-  subject: string;
-  status: InvoiceStatus;
-  createdAt: Date;
-  updatedAt: Date | null;
-}
-
-const STATUSES: InvoiceStatus[] = ['unpaid', 'past_due', 'draft', 'paid'];
-
-export function invoiceRows(today = new Date()): InvoiceRow[] {
+export function invoiceRows(today = new Date()): Invoice[] {
   return sample.map((row) => ({
     id: row.id,
     amount: row.amount,
@@ -30,16 +16,22 @@ export function invoiceRows(today = new Date()): InvoiceRow[] {
 }
 
 export function filterInvoices(
-  rows: InvoiceRow[],
+  rows: Invoice[],
   range: DateRange | null,
   status: string | null,
-): InvoiceRow[] {
+  query = '',
+): Invoice[] {
+  const needle = query.trim().toLowerCase();
   return rows.filter((row) => {
     const inRange =
       !range ||
-      (dayTime(row.createdAt) >= dayTime(range.start) && dayTime(row.createdAt) <= dayTime(range.end));
+      (dayTime(row.createdAt) >= dayTime(range.start) &&
+        dayTime(row.createdAt) <= dayTime(range.end));
     const statusMatches = !status || status === 'all' || row.status === status;
-    return inRange && statusMatches;
+    const queryMatches =
+      !needle ||
+      [row.id, row.email, row.subject].some((text) => text.toLowerCase().includes(needle));
+    return inRange && statusMatches && queryMatches;
   });
 }
 
@@ -52,5 +44,5 @@ function dayTime(date: Date): number {
 }
 
 function isStatus(value: string): value is InvoiceStatus {
-  return STATUSES.some((status) => status === value);
+  return INVOICE_STATUS_OPTIONS.some((option) => option.value === value);
 }

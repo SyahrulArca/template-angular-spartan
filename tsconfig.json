@@ -47,7 +47,9 @@
       "@spartan-ng/helm/date-picker": ["./libs/ui/date-picker/src/index.ts"],
       "@spartan-ng/helm/calendar": ["./libs/ui/calendar/src/index.ts"],
       "@spartan-ng/helm/toggle-group": ["./libs/ui/toggle-group/src/index.ts"],
-      "@spartan-ng/helm/toggle": ["./libs/ui/toggle/src/index.ts"]
+      "@spartan-ng/helm/toggle": ["./libs/ui/toggle/src/index.ts"],
+      "@spartan-ng/helm/pagination": ["./libs/ui/pagination/src/index.ts"],
+      "@spartan-ng/helm/command": ["./libs/ui/command/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

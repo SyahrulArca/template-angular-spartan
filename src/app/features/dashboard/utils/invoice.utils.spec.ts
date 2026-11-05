@@ -1,5 +1,6 @@
-import { rangeFromPreset } from '../../core/constanta/date-range-preset';
-import { filterInvoices, invoiceRows, type InvoiceRow } from './invoices.sample';
+import { rangeFromPreset } from '../../../core/constanta/date-range-preset';
+import type { Invoice } from '../models/invoice.model';
+import { filterInvoices, invoiceRows } from './invoice.utils';
 
 describe('invoice sample filter', () => {
   const today = new Date(2026, 10, 5);
@@ -26,8 +27,18 @@ describe('invoice sample filter', () => {
     expect(ids).not.toContain('INV8801-06-011');
   });
 
+  it('matches the search text against id, email, and subject, ignoring case', () => {
+    const rows = invoiceRows(today);
+    const byId = filterInvoices(rows, null, null, ' inv2344 ').map((row) => row.id);
+    const byEmail = filterInvoices(rows, null, null, 'GLADYS').map((row) => row.id);
+
+    expect(byId).toEqual(['INV2344-09-004']);
+    expect(byEmail).toEqual(['INV2344-09-004']);
+    expect(filterInvoices(rows, null, null, 'no-such-invoice')).toHaveLength(0);
+  });
+
   it('returns every row when the range is cleared', () => {
-    const rows: InvoiceRow[] = invoiceRows(today);
+    const rows: Invoice[] = invoiceRows(today);
     expect(filterInvoices(rows, null, null)).toHaveLength(rows.length);
   });
 });

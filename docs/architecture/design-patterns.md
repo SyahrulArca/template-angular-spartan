@@ -30,11 +30,12 @@ Shell adalah **parent route**, bukan wrapper di `App`.
 
 Menu, produk header, dan env bukan service.
 
-| Data                        | File                        | Bentuk                                            |
-| --------------------------- | --------------------------- | ------------------------------------------------- |
-| Env build                   | `core/config/app-env.ts`    | objek `as const`, baca `import.meta.env.NG_APP_*` |
-| Sidebar                     | `core/config/app-menu.ts`   | array `AppMenuSidebarGroup` + helper murni        |
-| Header product & notifikasi | `core/config/app-header.ts` | array item + map ikon                             |
+| Data                        | File                               | Bentuk                                                                   |
+| --------------------------- | ---------------------------------- | ------------------------------------------------------------------------ |
+| Env build                   | `core/config/app-env.ts`           | objek `as const`, baca `import.meta.env.NG_APP_*`                        |
+| Sidebar                     | `core/config/app-menu.ts`          | array `AppMenuSidebarGroup` + helper murni                               |
+| Header product & notifikasi | `core/config/app-header.ts`        | array item + map ikon                                                    |
+| Global search (`Ctrl+K`)    | `core/config/app-global-search.ts` | item diturunkan dari menu + product, plus aksi; filter & highlight murni |
 
 Component layout hanya me-render array itu. Menambah menu = menambah data, lalu route terpisah di `app.routes.ts`.
 
@@ -99,7 +100,7 @@ Pola bacaannya: state privat `signal`, yang di-expose `asReadonly()`, turunan pa
 
 `TaskFormSheet` tidak sepenuhnya presentational: ia `inject(TaskStore)` dan menulis lewat store. Itu disengaja karena store di-provide di page, jadi sheet tetap satu instance dengan tabel. Yang tidak boleh naik ke `ui/` adalah HTTP langsung.
 
-Halaman datar (`Dashboard`, `Login`, `Settings`) tidak punya store. State lokal (`submitting`, `errorMessage` di login) cukup signal di component itu.
+`Dashboard` memakai pola yang sama untuk sample invoice: `InvoiceStore` di `providers`, `InvoiceTable` hanya menerima baris, `InvoiceFilterDialog` menulis pencarian lewat store. Halaman datar (`Login`, `Settings`) tidak punya store. State lokal (`submitting`, `errorMessage` di login) cukup signal di component itu.
 
 ## Reactive form
 
