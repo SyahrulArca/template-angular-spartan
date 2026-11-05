@@ -14,6 +14,10 @@
   --font-sans: 'Geist Variable', Geist, ui-sans-serif, sans-serif, system-ui;
   --font-serif: 'Lora Variable', Lora, ui-serif, serif;
   --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+
+  /* Base body size; adds a `text-md` utility (Tailwind has none by default). */
+  --text-md: 0.875rem;
+  --text-md--line-height: 1.25rem;
 }
 
 :root {
@@ -108,6 +112,11 @@
     @apply h-full overflow-x-hidden;
   }
   body {
-    @apply bg-background text-foreground min-h-full overflow-x-hidden font-sans;
+    @apply bg-background text-foreground text-md min-h-full overflow-x-hidden font-sans;
+  }
+  /* Table header/footer stand apart from data rows; utilities on the element still win. */
+  thead,
+  tfoot {
+    @apply bg-secondary text-secondary-foreground;
   }
 }
