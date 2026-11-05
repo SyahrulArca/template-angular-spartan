@@ -7,6 +7,6 @@ import { classes } from '@spartan-ng/helm/utils';
 })
 export class HlmCardTitle {
   constructor() {
-    classes(() => 'text-base leading-snug font-medium group-data-[size=sm]/card:text-sm');
+    classes(() => 'text-sm font-medium group-data-[size=sm]/card:text-sm');
   }
 }

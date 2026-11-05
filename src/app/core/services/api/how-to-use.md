@@ -52,4 +52,4 @@ import { AuthService } from '../../core/auth';
 | `apiInterceptor` | `core/services/api` | Default `withCredentials: true` |
 | `authInterceptor` | `core/auth` | 401 → refresh session |
 
-Dokumentasi lengkap: [`docs/api-service.md`](../../../../docs/api-service.md).
+Dokumentasi lengkap: [`docs/api/api-service.md`](../../../../docs/api/api-service.md).

@@ -36,7 +36,7 @@ import {
       <div hlmDropdownMenu class="">
         <div hlmDropdownMenuLabel>Products</div>
         <div hlmDropdownMenuSeparator></div>
-        <div hlmDropdownMenuGroup class="grid grid-cols-3 gap-2">
+        <div hlmDropdownMenuGroup class="grid grid-cols-3 gap-1 p-1">
           @for (product of products(); track product.id) {
             <a
               [routerLink]="product.path"

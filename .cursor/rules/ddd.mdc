@@ -1,0 +1,25 @@
+---
+description: Garap feature dengan DDD. Satu bounded context = satu folder di features/. Jangan pecah domain ke core atau feature lain.
+alwaysApply: true
+---
+
+# DDD di features/
+
+Project ini digarap dengan DDD per feature. Satu kemampuan bisnis = satu folder `src/app/features/<feature>/`. Jangan buat lapisan `domain/` / `application/` di root app, dan jangan memindahkan file domain ke folder yang jauh.
+
+Acuan: `docs/architecture/ddd.md`. Contoh hidup: `src/app/features/tasks/`.
+
+## Taruh di dalam feature yang sama
+
+- `models/` — tipe domain
+- `data/*.store.ts` — state use case; `providers` di page, bukan `providedIn: 'root'`
+- `services/` — aturan bisnis yang bukan HTTP dan bukan UI
+- `apis/` — HTTP lewat `ApiService`, tanpa state UI
+- `pages/` — orchestrator route
+- `ui/` — tampilan; tanpa HTTP
+
+## Jangan
+
+- Menaruh model, store, atau API milik satu feature di `core/`. `core/` hanya shared kernel: auth, transport HTTP, toast, tema, format angka.
+- Mengimpor isi feature lain. Pindah ke `core/` hanya setelah feature kedua benar-benar memakai konsep yang sama.
+- Menumbuhkan halaman (dashboard, settings, dan feature baru) dengan file di luar foldernya. Tambah `models/`, `data/`, `ui/` di dalam feature itu.

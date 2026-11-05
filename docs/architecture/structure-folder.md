@@ -1,5 +1,7 @@
 # Feature folder structure (copy this)
 
+Folder di bawah ini adalah lapisan DDD **di dalam** satu bounded context. Polanya ada di [ddd.md](./ddd.md). Peta aplikasi ada di [overview.md](./overview.md) dan [design-patterns.md](./design-patterns.md).
+
 Gunakan pola ini saat membuat feature baru di `src/app/features/<feature-name>/`.
 Copy folder ini sebagai scaffolding, lalu rename + hapus yang tidak dibutuhkan.
 
@@ -439,7 +441,7 @@ features/users/
 └── apis/user.api.ts
 ```
 
-Route (parent boleh flat atau children — lihat `docs/create-page.md`):
+Route (parent boleh flat atau children — lihat `docs/development/create-page.md`):
 
 - List: `/users` → `UserListPage`
 - Detail: `/users/:id` → `UserDetailPage` (baca `id` via `input()` route atau `ActivatedRoute`)
@@ -484,7 +486,7 @@ Setelah folder feature siap:
 2. Nav item + icon di `app-sidebar.ts`
 3. Toast via `toast()` dari `@spartan-ng/brain/sonner` (toaster sudah di shell)
 
-Detail step-by-step: [`docs/create-page.md`](../../../../docs/create-page.md).
+Detail step-by-step: [`docs/development/create-page.md`](../development/create-page.md).
 
 ---
 
@@ -503,7 +505,7 @@ Detail step-by-step: [`docs/create-page.md`](../../../../docs/create-page.md).
 
 Lihat juga:
 
-- [`docs/create-page.md`](../../../../docs/create-page.md) — walkthrough route + sidebar
-- [`docs/tasks-crud.md`](../../../../docs/tasks-crud.md) — arsitektur sample CRUD
-- [`docs/component-conventions.md`](../../../../docs/component-conventions.md) — generator CLI
-- [`.cursor/rules/spartan.mdc`](../../../../.cursor/rules/spartan.mdc) — aturan Spartan untuk AI/editor
+- [`docs/development/create-page.md`](../development/create-page.md) — walkthrough route + sidebar
+- [`docs/sample/tasks-crud.md`](../sample/tasks-crud.md) — arsitektur sample CRUD
+- [`docs/conventions/component-conventions.md`](../conventions/component-conventions.md) — generator CLI
+- [`.cursor/rules/spartan.mdc`](../../.cursor/rules/spartan.mdc) — aturan Spartan untuk AI/editor

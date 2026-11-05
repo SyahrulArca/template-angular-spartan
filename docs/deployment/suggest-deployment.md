@@ -254,6 +254,6 @@ PWA / `@angular/service-worker` bisa **memperparah** stale cache jika update flo
 
 ## Referensi terkait
 
-- [README.md](../README.md) — stack & scripts project
-- [create-page.md](./create-page.md) — menambah route (ingat SPA fallback untuk route baru)
+- [README.md](../../README.md) — stack & scripts project
+- [create-page.md](../development/create-page.md) — menambah route (ingat SPA fallback untuk route baru)
 

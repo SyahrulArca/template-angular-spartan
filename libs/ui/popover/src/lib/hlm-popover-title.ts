@@ -7,6 +7,6 @@ import { classes } from '@spartan-ng/helm/utils';
 })
 export class HlmPopoverTitle {
   constructor() {
-    classes(() => 'font-medium');
+    classes(() => 'text-sm font-medium');
   }
 }

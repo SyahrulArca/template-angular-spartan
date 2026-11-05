@@ -10,7 +10,7 @@ Includes a collapsible sidebar layout, lazy-loaded routes, dark mode, toast noti
 |-------|------------|
 | Framework | Angular 21 (standalone, signals) |
 | UI | spartan/ui — Brain (npm) + Helm (copied to `libs/ui/`) |
-| Styling | Tailwind CSS v4, Nova theme |
+| Styling | Tailwind CSS v4, Lyra preset (spartan/ui) |
 | Icons | `@ng-icons/lucide` |
 | Tests | Vitest via Angular CLI |
 
@@ -27,8 +27,8 @@ Open [http://localhost:4200](http://localhost:4200). Default route redirects to 
 
 See the [`docs/`](./docs/) folder:
 
-- [Create a new page](./docs/create-page.md) — feature page walkthrough (routing, sidebar, breadcrumb)
-- [Component conventions & CLI](./docs/component-conventions.md) — generator defaults, view/logic split
+- [Create a new page](./docs/development/create-page.md) — feature page walkthrough (routing, sidebar, breadcrumb)
+- [Component conventions & CLI](./docs/conventions/component-conventions.md) — generator defaults, view/logic split
 
 ## Project structure
 
@@ -94,7 +94,7 @@ providers: [provideIcons({ lucidePlus })],
 
 ## Theming & dark mode
 
-Theme tokens are defined in `src/styles.css` (Nova style). Toggle dark mode via the header button or `ThemeService` — persisted in `localStorage`.
+Theme tokens are defined in `src/styles.css`. Spartan Helm preset: **Lyra** (`components.json`). Toggle dark mode via the header button or `ThemeService` — persisted in `localStorage`.
 
 Regenerate theme variables:
 

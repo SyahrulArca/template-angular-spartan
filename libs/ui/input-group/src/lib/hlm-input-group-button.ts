@@ -3,13 +3,13 @@ import { HlmButton, provideBrnButtonConfig } from '@spartan-ng/helm/button';
 import { classes } from '@spartan-ng/helm/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const inputGroupAddonVariants = cva('gap-2 text-sm flex items-center shadow-none', {
+const inputGroupAddonVariants = cva('gap-2 text-xs flex items-center shadow-none', {
   variants: {
     size: {
-      xs: "h-6 gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)]",
-      sm: '',
-      'icon-xs': 'size-6 rounded-[calc(var(--radius)-3px)] p-0 has-[>ng-icon]:p-0',
-      'icon-sm': 'size-8 p-0 has-[>ng-icon]:p-0',
+      xs: "h-6 gap-1 rounded-none px-1.5 [&>ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)]",
+      sm: 'gap-1',
+      'icon-xs': 'size-6 rounded-none p-0 has-[>ng-icon]:p-0',
+      'icon-sm': 'size-7 p-0 has-[>ng-icon]:p-0',
     },
   },
   defaultVariants: {

@@ -46,7 +46,7 @@ export class TaskPage {
 
   protected readonly deleteTarget = computed(() => {
     const id = this.pendingDeleteId();
-    return id ? this.store.getById(id) ?? null : null;
+    return id ? (this.store.getById(id) ?? null) : null;
   });
 
   protected openCreateForm(): void {

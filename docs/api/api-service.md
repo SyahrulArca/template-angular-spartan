@@ -9,8 +9,8 @@ Dua modul terpisah dengan tanggung jawab jelas:
 
 Quick reference:
 
-- [`core/services/api/how-to-use.md`](../src/app/core/services/api/how-to-use.md)
-- [`core/auth/how-to-use.md`](../src/app/core/auth/how-to-use.md)
+- [`core/services/api/how-to-use.md`](../../src/app/core/services/api/how-to-use.md)
+- [`core/auth/how-to-use.md`](../../src/app/core/auth/how-to-use.md)
 
 ---
 
@@ -119,5 +119,5 @@ Auth paths (`/auth/login`, `/auth/refresh`, dll.) di `core/auth/auth.constants.t
 
 ## Referensi
 
-- [create-page.md](./create-page.md)
-- [structure-folder.md](../src/app/features/(instructions)/structure-folder.md)
+- [create-page.md](../development/create-page.md)
+- [structure-folder.md](../architecture/structure-folder.md)

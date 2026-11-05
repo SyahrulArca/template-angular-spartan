@@ -7,6 +7,6 @@ import { classes } from '@spartan-ng/helm/utils';
 })
 export class HlmPopoverDescription {
   constructor() {
-    classes(() => 'text-muted-foreground');
+    classes(() => 'text-muted-foreground text-xs/relaxed');
   }
 }

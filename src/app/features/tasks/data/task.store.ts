@@ -23,8 +23,8 @@ const SEED_TASKS: Task[] = [
     title: 'Draft release notes',
     description: 'Summarize template changes for the first public release.',
     status: 'todo',
-    createdAt: new Date('2026-07-14T08:00:00'),
-    updatedAt: new Date('2026-07-14T08:00:00'),
+    createdAt: new Date('2026-01-14T08:00:00'),
+    updatedAt: new Date('2026-01-14T08:00:00'),
   },
 ];
 

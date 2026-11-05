@@ -247,6 +247,6 @@ Semua route saat ini di-render di dalam `app-shell` (sidebar layout). Kalau butu
 
 ## Referensi
 
-- Konvensi component & CLI: [component-conventions.md](./component-conventions.md)
+- Konvensi component & CLI: [component-conventions.md](../conventions/component-conventions.md)
 - Spartan component catalog: `ng g @spartan-ng/cli:info --json`
 - Cursor rules: `.cursor/rules/cursor.mdc`, `.cursor/rules/spartan.mdc`

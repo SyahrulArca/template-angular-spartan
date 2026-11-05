@@ -17,84 +17,84 @@
 }
 
 :root {
-  /* Brand palette */
-  --brand-glare: #d9ff03;
+  /* Brand palette — ivory, oat beige, mushroom, walnut, deep cocoa.
+     Toast, alert, and conditional colors stay outside this set. */
+  --brand-ivory: #f4efe7;
+  --brand-oat-beige: #d9c9b5;
+  --brand-mushroom: #a89584;
+  --brand-walnut: #775f52;
+  --brand-cocoa: #4d392e;
+  --brand-deep-cocoa: #332319;
   --brand-orange: #fd572a;
-  --brand-blue-violet: #695ac6;
-  --brand-charcoal: #201f1f;
-  --brand-charcoal-sidebar: #1a1a1a;
-  --brand-black: #000000;
-  --brand-off-white: #f2efeb;
-  --brand-off-white-sidebar: #e7e5e1;
-  --brand-gray: #a6a8ab;
-  --brand-muted: rgba(166, 168, 171, 0.22);
 
   color-scheme: light;
 
-  --radius: 0.625rem;
+  --radius: 0rem;
   --tracking-normal: 0.05em;
   --spacing: 0.25rem;
 
-  --background: var(--brand-off-white);
-  --foreground: var(--brand-charcoal);
-  --card: #ffffff;
-  --card-foreground: var(--brand-charcoal);
-  --popover: #ffffff;
-  --popover-foreground: var(--brand-charcoal);
-  --primary: var(--brand-blue-violet);
-  --primary-foreground: var(--brand-off-white);
-  --secondary: color-mix(in srgb, var(--brand-gray) 18%, var(--brand-off-white));
-  --secondary-foreground: var(--brand-charcoal);
-  --muted: var(--brand-muted);
-  --muted-foreground: var(--brand-charcoal);
-  --accent: color-mix(in srgb, var(--brand-glare) 22%, var(--brand-off-white));
-  --accent-foreground: var(--brand-charcoal);
+  --background: var(--brand-ivory);
+  --foreground: var(--brand-deep-cocoa);
+  --card: color-mix(in srgb, var(--brand-mushroom) 12%, var(--brand-ivory));
+  --card-foreground: var(--brand-deep-cocoa);
+  --popover: color-mix(in srgb, white 68%, var(--brand-ivory));
+  --popover-foreground: var(--brand-deep-cocoa);
+  --primary: var(--brand-walnut);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-oat-beige);
+  --secondary-foreground: var(--brand-deep-cocoa);
+  --muted: color-mix(in srgb, var(--brand-mushroom) 18%, var(--brand-ivory));
+  --muted-foreground: color-mix(in srgb, var(--brand-walnut) 55%, var(--brand-deep-cocoa));
+  --accent: color-mix(in srgb, var(--brand-mushroom) 22%, var(--brand-ivory));
+  --accent-foreground: var(--brand-deep-cocoa);
   --destructive: var(--brand-orange);
-  --destructive-foreground: var(--brand-off-white);
-  --border: color-mix(in srgb, var(--brand-gray) 35%, transparent);
-  --input: color-mix(in srgb, var(--brand-gray) 35%, transparent);
-  --ring: var(--brand-blue-violet);
-  --sidebar: var(--brand-off-white-sidebar);
-  --sidebar-foreground: var(--brand-charcoal);
-  --sidebar-primary: var(--brand-blue-violet);
-  --sidebar-primary-foreground: var(--brand-off-white-sidebar);
-  --sidebar-accent: var(--brand-muted);
-  --sidebar-accent-foreground: var(--brand-charcoal);
-  --sidebar-border: color-mix(in srgb, var(--brand-gray) 35%, transparent);
-  --sidebar-ring: var(--brand-blue-violet);
+  --destructive-foreground: #ffffff;
+  --border: var(--brand-mushroom);
+  --input: color-mix(in srgb, var(--brand-mushroom) 38%, transparent);
+  --ring: var(--brand-deep-cocoa);
+
+  --sidebar: var(--brand-oat-beige);
+  --sidebar-foreground: var(--brand-deep-cocoa);
+  --sidebar-primary: var(--brand-walnut);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--brand-mushroom);
+  --sidebar-accent-foreground: var(--brand-ivory);
+  --sidebar-border: color-mix(in srgb, var(--brand-mushroom) 38%, transparent);
+  --sidebar-ring: var(--brand-walnut);
 }
 
 :root.dark,
 .dark {
   color-scheme: dark;
 
-  --background: var(--brand-charcoal);
-  --foreground: var(--brand-off-white);
-  --card: color-mix(in srgb, var(--brand-black) 35%, var(--brand-charcoal));
-  --card-foreground: var(--brand-off-white);
-  --popover: color-mix(in srgb, var(--brand-black) 35%, var(--brand-charcoal));
-  --popover-foreground: var(--brand-off-white);
-  --primary: var(--brand-blue-violet);
-  --primary-foreground: var(--brand-off-white);
-  --secondary: color-mix(in srgb, var(--brand-gray) 22%, var(--brand-charcoal));
-  --secondary-foreground: var(--brand-off-white);
-  --muted: var(--brand-muted);
-  --muted-foreground: var(--brand-gray);
-  --accent: color-mix(in srgb, var(--brand-glare) 14%, var(--brand-charcoal));
-  --accent-foreground: var(--brand-glare);
+  --background: var(--brand-cocoa);
+  --foreground: var(--brand-ivory);
+  --card: var(--brand-deep-cocoa);
+  --card-foreground: var(--brand-ivory);
+  --popover: color-mix(in srgb, var(--brand-walnut) 28%, var(--brand-deep-cocoa));
+  --popover-foreground: var(--brand-ivory);
+  --primary: var(--brand-mushroom);
+  --primary-foreground: var(--brand-deep-cocoa);
+  --secondary: color-mix(in srgb, var(--brand-walnut) 24%, var(--brand-deep-cocoa));
+  --secondary-foreground: var(--brand-ivory);
+  --muted: color-mix(in srgb, var(--brand-mushroom) 14%, var(--brand-deep-cocoa));
+  --muted-foreground: var(--brand-oat-beige);
+  --accent: color-mix(in srgb, var(--brand-oat-beige) 14%, var(--brand-deep-cocoa));
+  --accent-foreground: var(--brand-oat-beige);
   --destructive: var(--brand-orange);
-  --destructive-foreground: var(--brand-off-white);
-  --border: color-mix(in srgb, var(--brand-gray) 28%, transparent);
-  --input: color-mix(in srgb, var(--brand-gray) 28%, transparent);
-  --ring: var(--brand-blue-violet);
-  --sidebar: var(--brand-charcoal-sidebar);
-  --sidebar-foreground: var(--brand-off-white);
-  --sidebar-primary: var(--brand-glare);
-  --sidebar-primary-foreground: var(--brand-charcoal-sidebar);
-  --sidebar-accent: var(--brand-muted);
-  --sidebar-accent-foreground: var(--brand-off-white);
-  --sidebar-border: color-mix(in srgb, var(--brand-gray) 28%, transparent);
-  --sidebar-ring: var(--brand-blue-violet);
+  --destructive-foreground: #ffffff;
+  --border: color-mix(in srgb, var(--brand-mushroom) 34%, transparent);
+  --input: color-mix(in srgb, var(--brand-mushroom) 34%, transparent);
+  --ring: var(--brand-oat-beige);
+
+  --sidebar: color-mix(in srgb, black 22%, var(--brand-deep-cocoa));
+  --sidebar-foreground: var(--brand-ivory);
+  --sidebar-primary: var(--brand-oat-beige);
+  --sidebar-primary-foreground: var(--brand-deep-cocoa);
+  --sidebar-accent: color-mix(in srgb, var(--brand-walnut) 22%, var(--brand-deep-cocoa));
+  --sidebar-accent-foreground: var(--brand-ivory);
+  --sidebar-border: color-mix(in srgb, var(--brand-mushroom) 34%, transparent);
+  --sidebar-ring: var(--brand-oat-beige);
 }
 
 @layer base {

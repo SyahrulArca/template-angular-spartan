@@ -19,6 +19,6 @@ import { classes } from '@spartan-ng/helm/utils';
 })
 export class HlmFieldSeparator {
   constructor() {
-    classes(() => '-my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2 relative');
+    classes(() => '-my-2 h-5 text-xs group-data-[variant=outline]/field-group:-mb-2 relative');
   }
 }

@@ -162,5 +162,5 @@ Saat itu, extend dokumentasi ini dengan section "Custom schematic".
 
 ## Lihat juga
 
-- [create-page.md](./create-page.md) — walkthrough menambah halaman
-- [README.md](../README.md) — setup project & Spartan CLI
+- [create-page.md](../development/create-page.md) — walkthrough menambah halaman
+- [README.md](../../README.md) — setup project & Spartan CLI

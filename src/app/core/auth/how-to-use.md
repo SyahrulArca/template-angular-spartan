@@ -174,4 +174,4 @@ Tidak perlu handle manual di setiap feature API.
 ## Referensi
 
 - [`core/services/api/how-to-use.md`](../services/api/how-to-use.md) — HTTP wrapper
-- [`docs/api-service.md`](../../../../docs/api-service.md) — dokumentasi lengkap HTTP + auth
+- [`docs/api/api-service.md`](../../../../docs/api/api-service.md) — dokumentasi lengkap HTTP + auth

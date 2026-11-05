@@ -16,7 +16,9 @@ export class NumberFormatContextService {
 
   // Private Writable Signals
   private readonly selectedFormat = signal<TemplateFormatNumber>(templateFormatNumber[0]);
-  private readonly selectedNegativeBehavior = signal<NegativeNumberBehavior>(negativeNumberBehavior[0]);
+  private readonly selectedNegativeBehavior = signal<NegativeNumberBehavior>(
+    negativeNumberBehavior[0],
+  );
 
   // Readonly Signals (Di-expose ke publik)
   readonly format = this.selectedFormat.asReadonly();
@@ -70,7 +72,7 @@ export class NumberFormatContextService {
     value: number | null | undefined,
     customFormat?: string | TemplateFormatNumber, // 💡 Menerima string key ATAU object
     withDecimal: boolean = false,
-    customNegativeKey?: string
+    customNegativeKey?: string,
   ): { formattedText: string; colorClass: string } {
     if (value === null || value === undefined || isNaN(value)) {
       return { formattedText: '-', colorClass: '' };
@@ -95,9 +97,10 @@ export class NumberFormatContextService {
     const isNegative = value < 0;
 
     // 3. Tentukan Nilai Absolut / Asli
-    const rawValue = activeNegative.template.absoluteValue || (isNegative && activeNegative.template.brackets)
-      ? Math.abs(value)
-      : value;
+    const rawValue =
+      activeNegative.template.absoluteValue || (isNegative && activeNegative.template.brackets)
+        ? Math.abs(value)
+        : value;
 
     // 4. Format Ribuan dan Desimal
     const decimalPlaces = withDecimal ? activeFormat.template.decimal_places : 0;
@@ -122,7 +125,8 @@ export class NumberFormatContextService {
     }
 
     // 6. Class Warna
-    const colorClass = isNegative && activeNegative.template.color === 'danger' ? 'text-red-500' : '';
+    const colorClass =
+      isNegative && activeNegative.template.color === 'danger' ? 'text-destructive' : '';
 
     return { formattedText, colorClass };
   }

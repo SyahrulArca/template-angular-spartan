@@ -10,7 +10,7 @@ import { classes } from '@spartan-ng/helm/utils';
 export class HlmBreadcrumbList {
   constructor() {
     classes(
-      () => 'text-muted-foreground gap-1.5 text-sm flex flex-wrap items-center wrap-break-word',
+      () => 'text-muted-foreground gap-1.5 text-xs flex flex-wrap items-center wrap-break-word',
     );
   }
 }
