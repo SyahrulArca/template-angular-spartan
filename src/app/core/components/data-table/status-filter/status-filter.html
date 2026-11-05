@@ -1,0 +1,16 @@
+<hlm-toggle-group
+  type="single"
+  variant="outline"
+  [nullable]="false"
+  [value]="value()"
+  (valueChange)="onValueChange($event)"
+>
+  @for (option of options(); track option.value) {
+    <button hlmToggleGroupItem type="button" [value]="option.value">
+      {{ option.label }}
+      @if (option.count != null) {
+        <span class="text-muted-foreground tabular-nums">{{ option.count }}</span>
+      }
+    </button>
+  }
+</hlm-toggle-group>

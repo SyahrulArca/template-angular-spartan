@@ -1,0 +1,14 @@
+<div class="flex flex-wrap items-center gap-3">
+  <div class="flex flex-wrap items-center gap-2">
+    <app-date-range-filter [(range)]="range" />
+    @if (statuses().length) {
+      <app-status-filter [options]="statuses()" [(value)]="status" />
+    }
+  </div>
+
+  <div class="ms-auto flex flex-wrap items-center gap-2">
+    <ng-content />
+  </div>
+</div>
+
+<ng-content select="[dataTable]" />

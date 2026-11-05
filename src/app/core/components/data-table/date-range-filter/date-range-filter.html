@@ -1,0 +1,27 @@
+<div class="flex flex-wrap items-center gap-2">
+  <hlm-select
+    class="w-fit"
+    [value]="preset()"
+    [itemToString]="presetLabel"
+    (valueChange)="onPreset($event)"
+  >
+    <hlm-select-trigger class="w-fit">
+      <hlm-select-value placeholder="Kustom" />
+    </hlm-select-trigger>
+    <hlm-select-content *hlmSelectPortal class="min-w-(--radix-select-trigger-width)">
+      @for (preset of presets; track preset.id) {
+        <hlm-select-item [value]="preset.id">{{ preset.label }}</hlm-select-item>
+      }
+    </hlm-select-content>
+  </hlm-select>
+
+  <hlm-date-range-picker
+    class="w-fit"
+    [date]="pickerDate()"
+    [formatDates]="formatRange"
+    [autoCloseOnEndSelection]="true"
+    (dateChange)="onRangeChange($event)"
+  >
+    <hlm-date-picker-trigger class="w-fit">Pilih tanggal</hlm-date-picker-trigger>
+  </hlm-date-range-picker>
+</div>
