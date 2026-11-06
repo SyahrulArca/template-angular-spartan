@@ -27,9 +27,9 @@
   --brand-oat-beige: #d9c9b5;
   --brand-mushroom: #a89584;
   --brand-walnut: #775f52;
-  --brand-cocoa: #4d392e;
-  --brand-deep-cocoa: #332319;
-  --brand-dark: #0b090c;
+  --brand-cocoa: #75452b;
+  --brand-deep-cocoa: #24150d;
+  --brand-dark: #1c1208;
   --brand-orange: #fd572a;
 
   --brand-success: #22472f;
@@ -74,9 +74,9 @@
 .dark {
   color-scheme: dark;
 
-  --background: var(--brand-dark);
+  --background: var(--brand-deep-cocoa);
   --foreground: var(--brand-ivory);
-  --card: color-mix(in srgb, var(--brand-deep-cocoa) 18%, var(--brand-dark));
+  --card: color-mix(in srgb, var(--brand-walnut) 18%, var(--brand-deep-cocoa));
   --card-foreground: var(--brand-ivory);
   --popover: color-mix(in srgb, var(--brand-walnut) 28%, var(--brand-deep-cocoa));
   --popover-foreground: var(--brand-ivory);
@@ -94,11 +94,11 @@
   --input: color-mix(in srgb, var(--brand-mushroom) 34%, transparent);
   --ring: var(--brand-oat-beige);
 
-  --sidebar: color-mix(in srgb, black 22%, var(--brand-deep-cocoa));
+  --sidebar: color-mix(in srgb, black 22%, var(--brand-dark));
   --sidebar-foreground: var(--brand-ivory);
   --sidebar-primary: var(--brand-oat-beige);
-  --sidebar-primary-foreground: var(--brand-deep-cocoa);
-  --sidebar-accent: color-mix(in srgb, var(--brand-walnut) 22%, var(--brand-deep-cocoa));
+  --sidebar-primary-foreground: var(--brand-dark);
+  --sidebar-accent: color-mix(in srgb, var(--brand-walnut) 22%, var(--brand-dark));
   --sidebar-accent-foreground: var(--brand-ivory);
   --sidebar-border: color-mix(in srgb, var(--brand-mushroom) 34%, transparent);
   --sidebar-ring: var(--brand-oat-beige);
