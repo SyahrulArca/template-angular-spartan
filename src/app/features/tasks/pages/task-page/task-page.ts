@@ -2,12 +2,17 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { appAlert } from '../../../../core/components/app-alert-dialog';
 import { appToast } from '../../../../core/components/app-toast';
+import { DatatableFilter } from '../../../../core/components/datatable-filter/datatable-filter';
+import { SearchInput } from '../../../../core/components/search-input/search-input';
 import { AppPageHeader } from '../../../../layout/app-page-header/app-page-header';
 import { AppPageHeaderActions } from '../../../../layout/app-page-header/ui/app-page-header-actions/app-page-header-actions';
 import { AppPageHeaderNaration } from '../../../../layout/app-page-header/ui/app-page-header-naration/app-page-header-naration';
 import { TaskStore } from '../../data/task.store';
 import { TaskDeleteDialog } from '../../ui/task-delete-dialog/task-delete-dialog';
+import { TaskFilterDialog } from '../../ui/task-filter-dialog/task-filter-dialog';
 import { TaskFormSheet } from '../../ui/task-form-sheet/task-form-sheet';
 import { TaskTable } from '../../ui/task-table/task-table';
 
@@ -19,8 +24,12 @@ import { TaskTable } from '../../ui/task-table/task-table';
     AppPageHeaderActions,
     AppPageHeaderNaration,
     HlmButtonImports,
+    HlmCardImports,
+    DatatableFilter,
+    SearchInput,
     NgIcon,
     TaskTable,
+    TaskFilterDialog,
     TaskFormSheet,
     TaskDeleteDialog,
   ],
@@ -32,6 +41,7 @@ export class TaskPage {
   protected readonly tasks = this.store.tasks;
   protected readonly total = this.store.total;
   protected readonly completedCount = this.store.completedCount;
+  protected readonly list = this.store;
 
   protected readonly pageDescription = computed(
     () =>
@@ -54,6 +64,12 @@ export class TaskPage {
     this.formOpen.set(true);
   }
 
+  protected resetTaskFilters(): void {
+    this.store.setRange(null);
+    this.store.setStatus('all');
+    this.store.setSearch('');
+  }
+
   protected openEditForm(taskId: string): void {
     this.formTaskId.set(taskId);
     this.formOpen.set(true);
@@ -67,10 +83,11 @@ export class TaskPage {
   protected onFormSaved(): void {
     const isEdit = this.formTaskId() !== null;
     this.closeForm();
-    appToast({
+    appAlert({
       type: 'success',
       title: isEdit ? 'Task updated' : 'Task created',
       description: 'Changes are stored in memory only.',
+      confirmLabel: 'OK',
     });
   }
 

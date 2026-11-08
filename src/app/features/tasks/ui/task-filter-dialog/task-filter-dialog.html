@@ -1,0 +1,29 @@
+<hlm-dialog>
+  <button hlmBtn hlmDialogTrigger variant="outline" type="button">
+    Filter
+    @if (store.search()) {
+      <span class="text-muted-foreground">(1)</span>
+    }
+  </button>
+  <hlm-dialog-content *hlmDialogPortal class="sm:max-w-md">
+    <hlm-dialog-header>
+      <h2 hlmDialogTitle>Filter tasks</h2>
+      <p hlmDialogDescription>Search by title, description, or task id.</p>
+    </hlm-dialog-header>
+
+    <div hlmField>
+      <label hlmFieldLabel for="task-search-dialog">Search</label>
+      <app-search-input
+        inputId="task-search-dialog"
+        placeholder="Title, description, task-…"
+        [value]="store.search()"
+        (valueChange)="store.setSearch($event)"
+      />
+    </div>
+
+    <hlm-dialog-footer>
+      <button hlmBtn variant="outline" type="button" (click)="store.setSearch('')">Reset</button>
+      <button hlmBtn hlmDialogClose type="button">Done</button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

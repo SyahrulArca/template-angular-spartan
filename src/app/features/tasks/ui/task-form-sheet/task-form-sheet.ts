@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { FormShellSingle } from '../../../../core/components/form-shell/form-shell-single';
 import { TaskStore } from '../../data/task.store';
 import { TASK_STATUS_OPTIONS, type TaskFormValue, type TaskStatus } from '../../models/task.model';
 
@@ -19,7 +19,7 @@ import { TASK_STATUS_OPTIONS, type TaskFormValue, type TaskStatus } from '../../
     HlmInputImports,
     HlmTextareaImports,
     HlmSelectImports,
-    HlmButtonImports,
+    FormShellSingle,
   ],
   templateUrl: './task-form-sheet.html',
 })
@@ -36,6 +36,14 @@ export class TaskFormSheet {
   protected readonly sheetState = computed(() => (this.open() ? 'open' : 'closed') as 'open' | 'closed');
   protected readonly isEditMode = computed(() => this.taskId() !== null);
   protected readonly heading = computed(() => (this.isEditMode() ? 'Edit task' : 'Create task'));
+  protected readonly formDescription = computed(() =>
+    this.isEditMode()
+      ? 'Update task details. Changes are kept in memory only.'
+      : 'Add a new task to the in-memory store.',
+  );
+  protected readonly submitLabel = computed(() =>
+    this.isEditMode() ? 'Save changes' : 'Create task',
+  );
 
   protected readonly form = new FormGroup({
     title: new FormControl('', {

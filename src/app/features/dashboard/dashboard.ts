@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
 import { HlmP } from '@spartan-ng/helm/typography';
+import { appAlert } from '../../core/components/app-alert-dialog';
 import { appToast, type AppToastLocation } from '../../core/components/app-toast';
 import { DatatableFilter } from '../../core/components/datatable-filter/datatable-filter';
 import { EmptyData } from '../../core/components/empty-data/empty-data';
+import { ImportDataDialogComponent } from '../../core/components/import-data-dialog';
 import { SearchInput } from '../../core/components/search-input/search-input';
 import { ConfirmService } from '../../core/services/confirm';
 import { AppPageHeader } from '../../layout/app-page-header/app-page-header';
@@ -47,12 +49,39 @@ const TOAST_LOCATIONS: AppToastLocation[] = [
     SearchInput,
     InvoiceQuickForm,
     InvoiceLinesForm,
+    ImportDataDialogComponent,
   ],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
   private readonly confirm = inject(ConfirmService);
   protected readonly invoices = inject(InvoiceStore);
+
+  protected readonly importOpen = model(false);
+  protected readonly importLoading = signal(false);
+
+  protected readonly onImportDownloadTemplate = (): void => {
+    appToast({
+      type: 'info',
+      title: 'Download template',
+      description: 'Sambungkan ke file template atau API export di feature Anda.',
+    });
+  };
+
+  protected readonly onImportUploaded = async (file: File): Promise<void> => {
+    this.importLoading.set(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      appToast({
+        type: 'success',
+        title: 'File diterima',
+        description: `${file.name} (${Math.round(file.size / 1024)} KB) — belum diproses ke API.`,
+      });
+      this.importOpen.set(false);
+    } finally {
+      this.importLoading.set(false);
+    }
+  };
 
   protected readonly toastLocations = TOAST_LOCATIONS;
   protected readonly pageSizes = INVOICE_PAGE_SIZES;
@@ -108,6 +137,31 @@ export class Dashboard {
       title: `Toast at ${location}`,
       description: 'Position is controlled via the location option.',
       location,
+    });
+  }
+
+  protected showAlertSuccess(): void {
+    appAlert({ type: 'success', title: 'Item deleted successfully.' });
+  }
+
+  protected showAlertInfo(): void {
+    appAlert({ type: 'info', title: 'System is updating new features.' });
+  }
+
+  protected showAlertWarning(): void {
+    appAlert({ type: 'warning', title: 'This action cannot be undone.' });
+  }
+
+  protected showAlertError(): void {
+    appAlert({ type: 'error', title: 'Operation failed.' });
+  }
+
+  protected showAlertWithDescription(): void {
+    appAlert({
+      type: 'success',
+      title: 'Template is ready',
+      description: 'Spartan alert dialog is wired and working.',
+      confirmLabel: 'Got it',
     });
   }
 

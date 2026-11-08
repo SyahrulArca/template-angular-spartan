@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
   template: `
-    <div class="flex flex-col items-center gap-4 px-4 py-10 text-center">
+    <div class="flex flex-col items-center gap-4 px-4 py-10 text-center bg-secondary">
       <img
         ngSrc="assets/images/empty-page-asset.svg"
         width="662"

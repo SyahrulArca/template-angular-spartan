@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 export interface DatatableStatusOption {

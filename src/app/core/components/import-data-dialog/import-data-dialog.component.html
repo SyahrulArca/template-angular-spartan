@@ -1,0 +1,122 @@
+<input
+  #fileInput
+  type="file"
+  class="sr-only"
+  tabindex="-1"
+  [accept]="accept()"
+  (change)="onFileInputChange($event)"
+/>
+
+<hlm-dialog [state]="dialogState()" (stateChanged)="onDialogStateChanged($event)">
+  <hlm-dialog-content *hlmDialogPortal class="sm:max-w-lg" [showCloseButton]="true">
+    <hlm-dialog-header>
+      <h2 hlmDialogTitle>{{ title() }}</h2>
+      <p hlmDialogDescription>{{ description() }}</p>
+    </hlm-dialog-header>
+
+    <div class="flex flex-col gap-4">
+      @if (showDownloadSection()) {
+        <section class="flex flex-col gap-2 rounded-lg border border-border bg-muted/30 p-4">
+          <p class="text-muted-foreground text-sm">
+            Use the template to prepare your data before uploading.
+          </p>
+          <button
+            hlmBtn
+            type="button"
+            variant="outline"
+            class="w-fit"
+            [disabled]="busy()"
+            (click)="downloadTemplate()"
+          >
+            <ng-icon name="lucideDownload" class="size-4" />
+            {{ downloadLabel() }}
+          </button>
+        </section>
+      }
+
+      <section class="flex flex-col gap-2">
+        @if (selectedFile(); as file) {
+          <div
+            class="border-border bg-muted/20 flex items-center gap-3 rounded-lg border p-4"
+            role="status"
+          >
+            <div
+              class="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-md"
+            >
+              <ng-icon name="lucideFileSpreadsheet" class="size-5" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium">{{ file.name }}</p>
+              <p class="text-muted-foreground text-xs">{{ selectedFileSizeLabel() }}</p>
+            </div>
+            <button
+              hlmBtn
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              [disabled]="busy()"
+              [attr.aria-label]="'Remove ' + file.name"
+              (click)="removeFile()"
+            >
+              <ng-icon name="lucideTrash2" class="size-4" />
+            </button>
+          </div>
+          <button
+            hlmBtn
+            type="button"
+            variant="link"
+            class="h-auto self-start p-0 text-xs"
+            [disabled]="busy()"
+            (click)="openFilePicker()"
+          >
+            Replace file
+          </button>
+        } @else {
+          <div
+            class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-center transition-colors"
+            [class.border-primary]="dragOver()"
+            [class.bg-primary/5]="dragOver()"
+            [class.border-border]="!dragOver()"
+            [class.opacity-60]="busy()"
+            role="button"
+            tabindex="0"
+            [attr.aria-disabled]="busy()"
+            (click)="openFilePicker()"
+            (keydown.enter)="openFilePicker()"
+            (keydown.space)="$event.preventDefault(); openFilePicker()"
+            (dragover)="onDropzoneDragOver($event)"
+            (dragleave)="onDropzoneDragLeave($event)"
+            (drop)="onDropzoneDrop($event)"
+          >
+            <div
+              class="bg-muted text-muted-foreground flex size-12 items-center justify-center rounded-full"
+            >
+              <ng-icon name="lucideUpload" class="size-6" />
+            </div>
+            <p class="text-sm font-medium">Drag &amp; drop your Excel file here</p>
+            <p class="text-muted-foreground text-xs">or click to browse files</p>
+            <p class="text-muted-foreground text-xs">
+              Supported: {{ acceptedFormatsLabel() }} · max {{ maxSizeLabel() }}
+            </p>
+          </div>
+        }
+
+        @if (validationError(); as error) {
+          <p class="text-destructive text-sm" role="alert">{{ error }}</p>
+        }
+      </section>
+    </div>
+
+    <hlm-dialog-footer class="gap-2 sm:justify-end">
+      <button hlmBtn type="button" variant="outline" [disabled]="busy()" (click)="cancel()">
+        Cancel
+      </button>
+      <button hlmBtn type="button" [disabled]="!canUpload()" (click)="submitUpload()">
+        @if (busy()) {
+          <hlm-spinner />
+        }
+        {{ uploadLabel() }}
+      </button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

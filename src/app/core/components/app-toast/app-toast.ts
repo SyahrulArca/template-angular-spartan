@@ -20,9 +20,9 @@ const TYPE_STYLES: Record<AppToastType, { accent: string; container: string }> =
       'border-destructive/50 bg-background/96 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(232,93,58,0.28)]',
   },
   success: {
-    accent: 'bg-brand-success',
+    accent: 'bg-emerald-600',
     container:
-      'border-brand-success/50 bg-background/96 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(16,185,129,0.28)]',
+      'border-emerald-600/50 bg-background/96 backdrop-blur-sm text-foreground shadow-[0_0_16px_rgba(16,185,129,0.28)]',
   },
   warning: {
     accent: 'bg-amber-600',

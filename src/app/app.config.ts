@@ -6,6 +6,8 @@ import { firstValueFrom } from 'rxjs';
 
 import { routes } from './app.routes';
 import { AuthService, authInterceptor } from './core/auth';
+import { bindAppAlertService } from './core/components/app-alert-dialog/app-alert.util';
+import { AppAlertService } from './core/services/app-alert';
 import { apiInterceptor } from './core/services/api';
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +19,9 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const auth = inject(AuthService);
       return firstValueFrom(auth.bootstrapSession());
+    }),
+    provideAppInitializer(() => {
+      bindAppAlertService(inject(AppAlertService));
     }),
   ],
 };

@@ -72,6 +72,8 @@
 
 :root.dark,
 .dark {
+  --brand-success: #22472f;
+
   color-scheme: dark;
 
   --background: var(--brand-deep-cocoa);

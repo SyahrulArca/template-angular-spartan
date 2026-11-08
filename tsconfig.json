@@ -49,7 +49,8 @@
       "@spartan-ng/helm/toggle-group": ["./libs/ui/toggle-group/src/index.ts"],
       "@spartan-ng/helm/toggle": ["./libs/ui/toggle/src/index.ts"],
       "@spartan-ng/helm/pagination": ["./libs/ui/pagination/src/index.ts"],
-      "@spartan-ng/helm/command": ["./libs/ui/command/src/index.ts"]
+      "@spartan-ng/helm/command": ["./libs/ui/command/src/index.ts"],
+      "@spartan-ng/helm/table": ["./libs/ui/table/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

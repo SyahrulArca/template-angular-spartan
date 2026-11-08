@@ -1,0 +1,78 @@
+<div hlmCardHeader class="gap-4 border-b">
+  <div class="flex flex-col gap-1">
+    <h2 hlmCardTitle class="text-base" [id]="titleId">{{ title() }}</h2>
+    @if (description()) {
+      <p hlmCardDescription>{{ description() }}</p>
+    }
+  </div>
+
+  <nav class="w-full" [attr.aria-label]="'Langkah ' + (step() + 1) + ' dari ' + steps().length">
+    <ol class="flex flex-wrap gap-2">
+      @for (meta of steps(); track $index; let i = $index) {
+        <li>
+          <button
+            hlmBtn
+            type="button"
+            size="sm"
+            [variant]="i === step() ? 'default' : 'outline'"
+            class="gap-2"
+            [disabled]="submitting() || (linear() && i > step())"
+            [attr.aria-current]="i === step() ? 'step' : null"
+            (click)="goToStep(i)"
+          >
+            <span
+              class="flex size-5 items-center justify-center rounded-full border text-xs tabular-nums"
+              [class.border-primary-foreground/30]="i === step()"
+              [class.bg-primary-foreground/15]="i === step()"
+            >
+              {{ i + 1 }}
+            </span>
+            <span class="text-left">
+              <span class="block font-medium">{{ meta.label }}</span>
+              @if (meta.description) {
+                <span class="text-muted-foreground block text-xs font-normal">{{ meta.description }}</span>
+              }
+            </span>
+          </button>
+        </li>
+      }
+    </ol>
+  </nav>
+</div>
+
+<div hlmCardContent class="flex flex-col gap-4">
+  <ng-content />
+</div>
+
+<div hlmCardFooter class="flex flex-wrap items-center justify-between gap-2">
+  <button
+    hlmBtn
+    variant="outline"
+    type="button"
+    [disabled]="submitting()"
+    (click)="cancelled.emit()"
+  >
+    {{ cancelLabel() }}
+  </button>
+
+  <div class="flex flex-wrap items-center justify-end gap-2">
+    <ng-content select="[formWizardFooter]" />
+    @if (!isFirst()) {
+      <button hlmBtn variant="outline" type="button" [disabled]="submitting()" (click)="back()">
+        {{ backLabel() }}
+      </button>
+    }
+    @if (isLast()) {
+      <button hlmBtn type="submit" [disabled]="submitting()">
+        @if (submitting()) {
+          <hlm-spinner />
+        }
+        {{ submitLabel() }}
+      </button>
+    } @else {
+      <button hlmBtn type="button" [disabled]="submitting()" (click)="next()">
+        {{ nextLabel() }}
+      </button>
+    }
+  </div>
+</div>

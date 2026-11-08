@@ -1,0 +1,242 @@
+[
+  {
+    "id": "task-1",
+    "title": "Review Spartan UI docs",
+    "description": "Browse components and composition rules before building features.",
+    "status": "done",
+    "createdAt": "2026-07-10T09:00:00.000Z",
+    "updatedAt": "2026-07-12T14:30:00.000Z"
+  },
+  {
+    "id": "task-2",
+    "title": "Wire sidebar navigation",
+    "description": "Add routes and menu items for new feature pages.",
+    "status": "in_progress",
+    "createdAt": "2026-07-11T10:15:00.000Z",
+    "updatedAt": "2026-07-13T11:00:00.000Z"
+  },
+  {
+    "id": "task-3",
+    "title": "Draft release notes",
+    "description": "Summarize template changes for the first public release.",
+    "status": "todo",
+    "createdAt": "2026-01-14T08:00:00.000Z",
+    "updatedAt": "2026-01-14T08:00:00.000Z"
+  },
+  {
+    "id": "task-4",
+    "title": "Set up environment variables",
+    "description": "Document required keys for dev and prod builds.",
+    "status": "done",
+    "createdAt": "2026-02-03T08:30:00.000Z",
+    "updatedAt": "2026-02-05T16:00:00.000Z"
+  },
+  {
+    "id": "task-5",
+    "title": "Add loading skeletons",
+    "description": "Replace spinners on slow data routes with skeleton placeholders.",
+    "status": "in_progress",
+    "createdAt": "2026-02-18T12:00:00.000Z",
+    "updatedAt": "2026-02-20T09:45:00.000Z"
+  },
+  {
+    "id": "task-6",
+    "title": "Audit accessibility",
+    "description": "Run axe and fix focus order on forms.",
+    "status": "todo",
+    "createdAt": "2026-03-01T07:00:00.000Z",
+    "updatedAt": "2026-03-01T07:00:00.000Z"
+  },
+  {
+    "id": "task-7",
+    "title": "Fix table pagination edge case",
+    "description": "Empty page when deleting last item on last page.",
+    "status": "done",
+    "createdAt": "2026-03-10T14:20:00.000Z",
+    "updatedAt": "2026-03-11T10:00:00.000Z"
+  },
+  {
+    "id": "task-8",
+    "title": "Write Task feature tests",
+    "description": "Cover store filters and page reset behavior.",
+    "status": "in_progress",
+    "createdAt": "2026-03-15T09:10:00.000Z",
+    "updatedAt": "2026-03-16T11:30:00.000Z"
+  },
+  {
+    "id": "task-9",
+    "title": "Design empty states",
+    "description": "Illustrations or copy for no data and no matches.",
+    "status": "todo",
+    "createdAt": "2026-03-22T08:00:00.000Z",
+    "updatedAt": "2026-03-22T08:00:00.000Z"
+  },
+  {
+    "id": "task-10",
+    "title": "Optimize bundle size",
+    "description": "Analyze source-map explorer and lazy-load heavy routes.",
+    "status": "done",
+    "createdAt": "2026-04-02T13:00:00.000Z",
+    "updatedAt": "2026-04-04T17:00:00.000Z"
+  },
+  {
+    "id": "task-11",
+    "title": "Integrate error toast",
+    "description": "Show API failures via core toast service.",
+    "status": "in_progress",
+    "createdAt": "2026-04-08T10:00:00.000Z",
+    "updatedAt": "2026-04-09T14:15:00.000Z"
+  },
+  {
+    "id": "task-12",
+    "title": "Document folder structure",
+    "description": "Link DDD doc from README for new contributors.",
+    "status": "todo",
+    "createdAt": "2026-04-12T07:30:00.000Z",
+    "updatedAt": "2026-04-12T07:30:00.000Z"
+  },
+  {
+    "id": "task-13",
+    "title": "Refactor date presets",
+    "description": "Share presets between toolbar and filter dialog.",
+    "status": "done",
+    "createdAt": "2026-04-20T11:00:00.000Z",
+    "updatedAt": "2026-04-21T09:00:00.000Z"
+  },
+  {
+    "id": "task-14",
+    "title": "Keyboard shortcuts",
+    "description": "Open sheet with Cmd+K for quick add task.",
+    "status": "in_progress",
+    "createdAt": "2026-05-01T08:45:00.000Z",
+    "updatedAt": "2026-05-02T16:20:00.000Z"
+  },
+  {
+    "id": "task-15",
+    "title": "Mobile responsive pass",
+    "description": "Toolbar and table overflow on small screens.",
+    "status": "todo",
+    "createdAt": "2026-05-05T12:00:00.000Z",
+    "updatedAt": "2026-05-05T12:00:00.000Z"
+  },
+  {
+    "id": "task-16",
+    "title": "Seed data from JSON",
+    "description": "Move default tasks to a JSON file for easy editing.",
+    "status": "done",
+    "createdAt": "2026-05-10T09:00:00.000Z",
+    "updatedAt": "2026-05-10T15:00:00.000Z"
+  },
+  {
+    "id": "task-17",
+    "title": "Storybook for task cells",
+    "description": "Isolate status badge and action column stories.",
+    "status": "todo",
+    "createdAt": "2026-05-14T07:00:00.000Z",
+    "updatedAt": "2026-05-14T07:00:00.000Z"
+  },
+  {
+    "id": "task-18",
+    "title": "Bulk delete confirmation",
+    "description": "If multi-select is added, confirm destructive actions.",
+    "status": "todo",
+    "createdAt": "2026-05-18T10:30:00.000Z",
+    "updatedAt": "2026-05-18T10:30:00.000Z"
+  },
+  {
+    "id": "task-19",
+    "title": "Performance: virtual scroll",
+    "description": "Evaluate CDK virtual scroll for 1000+ rows.",
+    "status": "in_progress",
+    "createdAt": "2026-05-22T14:00:00.000Z",
+    "updatedAt": "2026-05-23T11:00:00.000Z"
+  },
+  {
+    "id": "task-20",
+    "title": "i18n strings extraction",
+    "description": "Mark user-visible strings for translation pipeline.",
+    "status": "todo",
+    "createdAt": "2026-06-01T08:15:00.000Z",
+    "updatedAt": "2026-06-01T08:15:00.000Z"
+  },
+  {
+    "id": "task-21",
+    "title": "Dark mode QA",
+    "description": "Verify contrast on badges and borders in dark theme.",
+    "status": "done",
+    "createdAt": "2026-06-05T13:40:00.000Z",
+    "updatedAt": "2026-06-06T10:00:00.000Z"
+  },
+  {
+    "id": "task-22",
+    "title": "Export tasks CSV",
+    "description": "Client-side export of filtered rows.",
+    "status": "in_progress",
+    "createdAt": "2026-06-10T09:20:00.000Z",
+    "updatedAt": "2026-06-11T12:00:00.000Z"
+  },
+  {
+    "id": "task-23",
+    "title": "Rename confusing column labels",
+    "description": "User feedback: Updated vs Created unclear.",
+    "status": "todo",
+    "createdAt": "2026-06-14T07:50:00.000Z",
+    "updatedAt": "2026-06-14T07:50:00.000Z"
+  },
+  {
+    "id": "task-24",
+    "title": "Hook up real API",
+    "description": "Replace local store with backend when endpoint is ready.",
+    "status": "todo",
+    "createdAt": "2026-06-18T11:00:00.000Z",
+    "updatedAt": "2026-06-18T11:00:00.000Z"
+  },
+  {
+    "id": "task-25",
+    "title": "Session timeout handling",
+    "description": "Redirect to login when refresh token fails.",
+    "status": "done",
+    "createdAt": "2026-06-22T08:00:00.000Z",
+    "updatedAt": "2026-06-23T14:30:00.000Z"
+  },
+  {
+    "id": "task-26",
+    "title": "Charts on dashboard",
+    "description": "Task completion trend for last 30 days.",
+    "status": "in_progress",
+    "createdAt": "2026-07-01T10:10:00.000Z",
+    "updatedAt": "2026-07-02T09:00:00.000Z"
+  },
+  {
+    "id": "task-27",
+    "title": "Copy for onboarding tooltip",
+    "description": "First visit hints for search and filters.",
+    "status": "todo",
+    "createdAt": "2026-07-04T12:00:00.000Z",
+    "updatedAt": "2026-07-04T12:00:00.000Z"
+  },
+  {
+    "id": "task-28",
+    "title": "Fix flaky e2e",
+    "description": "Stabilize date picker in CI timezone.",
+    "status": "todo",
+    "createdAt": "2026-07-06T15:00:00.000Z",
+    "updatedAt": "2026-07-06T15:00:00.000Z"
+  },
+  {
+    "id": "task-29",
+    "title": "Security: sanitize descriptions",
+    "description": "Ensure rich text later does not allow XSS.",
+    "status": "in_progress",
+    "createdAt": "2026-07-08T09:30:00.000Z",
+    "updatedAt": "2026-07-09T11:45:00.000Z"
+  },
+  {
+    "id": "task-30",
+    "title": "Prep demo script",
+    "description": "Five-minute walkthrough for stakeholders.",
+    "status": "todo",
+    "createdAt": "2026-07-09T08:00:00.000Z",
+    "updatedAt": "2026-07-09T08:00:00.000Z"
+  }
+]

@@ -28,6 +28,7 @@
           (valueChange)="invoices.setSearch($event)"
         />
         <button hlmBtn variant="outline" type="button">Export</button>
+        <button hlmBtn variant="outline" type="button" (click)="importOpen.set(true)">Import</button>
         <app-invoice-filter-dialog />
       </app-datatable-filter>
 
@@ -45,6 +46,13 @@
       }
     </div>
   </section>
+
+  <app-import-data-dialog
+    [(open)]="importOpen"
+    [loading]="importLoading()"
+    [onDownloadTemplate]="onImportDownloadTemplate"
+    [onUploaded]="onImportUploaded"
+  />
 
   <section hlmCard>
     <div hlmCardHeader>
@@ -86,6 +94,31 @@
             </button>
           }
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section hlmCard>
+    <div hlmCardHeader>
+      <h2 hlmCardTitle>Custom alert dialog</h2>
+      <p hlmCardDescription>
+        Trigger each alert type from <code class="text-xs">appAlert()</code> in
+        <code class="text-xs">core/components/app-alert-dialog</code> (SweetAlert-style, Spartan
+        dialog).
+      </p>
+    </div>
+    <div hlmCardContent class="flex flex-col gap-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <button hlmBtn type="button" variant="success" (click)="showAlertSuccess()">Success</button>
+        <button hlmBtn variant="outline" type="button" (click)="showAlertInfo()">Info</button>
+        <button hlmBtn variant="outline" type="button" (click)="showAlertWarning()">Warning</button>
+        <button hlmBtn variant="destructive" type="button" (click)="showAlertError()">Error</button>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button hlmBtn variant="secondary" type="button" (click)="showAlertWithDescription()">
+          With description
+        </button>
       </div>
     </div>
   </section>

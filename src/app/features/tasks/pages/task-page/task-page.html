@@ -15,7 +15,7 @@
       <ul class="mt-3 list-disc space-y-1 pl-5">
         <li>Use <span class="text-foreground font-medium">Add task</span> to open the form sheet.</li>
         <li>Edit or delete tasks from the table actions column.</li>
-        <li>Status can be todo, in progress, or done.</li>
+        <li>Filter by tanggal (created), status, or search; pagination matches the dashboard sample.</li>
       </ul>
     </app-page-header-naration>
 
@@ -27,11 +27,40 @@
     </app-page-header-actions>
   </app-app-page-header>
 
-  <app-task-table
-    [tasks]="tasks()"
-    (editTask)="openEditForm($event)"
-    (deleteTask)="openDeleteDialog($event)"
-  />
+  <section hlmCard>
+    <div hlmCardHeader>
+      <h2 hlmCardTitle>All tasks</h2>
+      <p hlmCardDescription>Manage tasks stored locally in a signal-based store.</p>
+    </div>
+    <div hlmCardContent class="flex flex-col gap-4">
+      <app-datatable-filter
+        [statuses]="list.statusOptions()"
+        [status]="list.status()"
+        [range]="list.range()"
+        (statusChange)="list.setStatus($event)"
+        (rangeChange)="list.setRange($event)"
+      >
+        <app-search-input
+          class="w-full sm:w-64"
+          placeholder="Search title, description..."
+          label="Search tasks"
+          [value]="list.search()"
+          (valueChange)="list.setSearch($event)"
+        />
+        <button hlmBtn variant="outline" type="button" disabled>Export</button>
+        <app-task-filter-dialog />
+      </app-datatable-filter>
+
+      <app-task-table
+        [totalTaskCount]="tasks().length"
+        [filteredCount]="list.filtered().length"
+        (editTask)="openEditForm($event)"
+        (deleteTask)="openDeleteDialog($event)"
+        (resetFilters)="resetTaskFilters()"
+        (addTask)="openCreateForm()"
+      />
+    </div>
+  </section>
 </div>
 
 <app-task-form-sheet
